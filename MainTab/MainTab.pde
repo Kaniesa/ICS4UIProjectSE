@@ -45,10 +45,10 @@ void addProfile(){
 }
 
 void keyPressed() {
-  //if ( key == TAB ){
-  //  println("HULLO");
-  //  profilePageADD = true;
-  //}
+  if ( key == TAB ){
+    println("HULLO");
+    profilePageADD = true;
+  }
   if( key == BACKSPACE ) {
     int L = typing.length();
     if ( L > 0 )
@@ -70,6 +70,12 @@ void keyPressed() {
      }
      pw.close();
      profilePageADD = false;
+    }
+  }
+  
+  else if ( key == CODED ){
+    if ( key == SHIFT ){
+     print("in caps now"); 
     }
   }
     
