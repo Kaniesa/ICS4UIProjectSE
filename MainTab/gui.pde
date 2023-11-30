@@ -20,6 +20,7 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:guiWi
 
 public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:388698:
     profilePageADD = true;
+    schedulePage = false;
 } //_CODE_:addperson:388698:
 
 public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPerson:330604:
@@ -28,6 +29,8 @@ public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPers
 
 public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692670:
   schedulePage = true;
+    profilePageADD = false;
+
 } //_CODE_:schedule:692670:
 
 public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:ScheduleOrder:486547:
