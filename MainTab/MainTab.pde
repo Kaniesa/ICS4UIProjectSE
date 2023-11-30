@@ -1,9 +1,3 @@
-boolean profilePageADD, profilePageEDIT;
-String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
-String typing = "";
-int i, personCount;
-PrintWriter pw;
-
 //BUGS TO FIX//
 // -> make shift button work
 // -> make sure last value doesn't carry over to next one
@@ -15,21 +9,36 @@ PrintWriter pw;
 //    - display files data on screen (so looks same as finished Add Person)
 //    - start from beginning (and users will backspace edit from here)
 
+import g4p_controls.*;
+boolean profilePageADD, profilePageEDIT, schedulePage;
+String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
+String typing = "";
+int i, personCount;
+PrintWriter pw;
+
 void setup() {
+
+  createGUI();
   size(1000, 500);
-  for ( int a = 0; a < stat.length; a ++ ){
+  for ( int a = 0; a < stat.length; a ++ ) {
     stat[a] = "";
   }
 }
 
-void draw(){
- if ( profilePageADD == true ){
-   background(255);
-   addProfile();
- }
+void draw() {
+  if ( profilePageADD == true ) {
+    background(255);
+    addProfile();
+    
+  } else if (schedulePage == true) {
+    background(255);
+    drawSchedule();
+    dateAndTime();
+    drawScheduleText();
+  }
 }
 
-void addProfile(){
+void addProfile() {
   fill(0);
   textSize(30);
   pw = createWriter("data/NewPerson" + personCount + " .txt");
@@ -45,34 +54,29 @@ void addProfile(){
 }
 
 void keyPressed() {
-  //if ( key == TAB ){
-  //  println("HULLO");
-  //  profilePageADD = true;
-  //}
-  if( key == BACKSPACE ) {
+  if ( key == TAB ) {
+    println("HULLO");
+    profilePageADD = true;
+  }
+  if ( key == BACKSPACE ) {
     int L = typing.length();
     if ( L > 0 )
       typing = typing.substring(0, L-1);
-  }
-  
-  else if ( key == ENTER ){
-    if ( i != stat.length -1 ){
+  } else if ( key == ENTER ) {
+    if ( i != stat.length -1 ) {
       i += 1;
       typing = "";
+    } else {
+      print("YAYYYY now i can commit identity theft...") ;
+      personCount ++;
+      for ( int b = 0; b < stat.length; b ++ ) {
+        pw.println(stat[b]);
+        stat[b] = "";
+        i = 0;
+      }
+      pw.close();
+      profilePageADD = false;
     }
-    else {
-     print("YAYYYY now i can commit identity theft...") ;
-     personCount ++;
-     for ( int b = 0; b < stat.length; b ++ ){
-       pw.println(stat[b]);
-       stat[b] = "";
-       i = 0;
-     }
-     pw.close();
-     profilePageADD = false;
-    }
-  }
-    
-  else
+  } else
     typing = typing + key;
 }
