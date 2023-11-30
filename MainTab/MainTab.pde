@@ -77,6 +77,12 @@ void keyPressed() {
       pw.close();
       profilePageADD = false;
     }
-  } else
+  } 
+  else if ( key == CODED ){
+    if ( key == SHIFT ){
+     print("You are typing in Shift"); 
+    }
+  }
+  else
     typing = typing + key;
 }
