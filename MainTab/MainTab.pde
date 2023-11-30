@@ -4,6 +4,17 @@ String typing = "";
 int i, personCount;
 PrintWriter pw;
 
+//BUGS TO FIX//
+// -> make shift button work
+// -> make sure last value doesn't carry over to next one
+// -> remove tab from first entry of first person
+
+// CODE TO DO //
+// -> Edit feature
+//    - get files from dropdown
+//    - display files data on screen (so looks same as finished Add Person)
+//    - start from beginning (and users will backspace edit from here)
+
 void setup() {
   size(1000, 500);
   for ( int a = 0; a < stat.length; a ++ ){
@@ -34,10 +45,10 @@ void addProfile(){
 }
 
 void keyPressed() {
-  if ( key == TAB ){
-    println("HULLO");
-    profilePageADD = true;
-  }
+  //if ( key == TAB ){
+  //  println("HULLO");
+  //  profilePageADD = true;
+  //}
   if( key == BACKSPACE ) {
     int L = typing.length();
     if ( L > 0 )
