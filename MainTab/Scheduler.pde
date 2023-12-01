@@ -24,31 +24,14 @@ class Scheduler {
         // Day 4: Rest
         print("Rest, ");
       } else if (day == 5) {
-        // Day 5: Determine the exercise based on goal and max
-        if (bodyPreference.equals("Upper Body")) {
-          if (benchPressProgress < squatProgress && benchPressProgress < deadliftProgress) {
-            print("Bench Press, ");
-          } else if (squatProgress < deadliftProgress) {
-            print("Squat, ");
-          } else {
+
             print("Deadlift, ");
-          }
-        } else {
-          if (squatProgress < benchPressProgress && squatProgress < deadliftProgress) {
-            print("Squat, ");
-          } else if (deadliftProgress < benchPressProgress) {
-            print("Deadlift, ");
-          } else {
-            print("Bench Press, ");
-          }
-        }
+          
+        
       } else if (day == 6) {
         // Day 6: Determine based on preference
-        if (bodyPreference.equals("Upper Body")) {
-          print("Pull Day (e.g., Deadlift), ");
-        } else {
+       
           print("Cardio, ");
-        }
       } else {
         // Day 7: Rest
         print("Rest, ");

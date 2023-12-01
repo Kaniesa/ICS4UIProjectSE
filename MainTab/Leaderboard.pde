@@ -9,32 +9,30 @@ class Leaderboard {
     persons.add(person);
   }
 
-  void displayLeaderboard() {
+  void displayTotalMaxLiftsLeaderboard() {
     bubbleSortTotalMaxLifts(persons);
-
-    // Display the leaderboard
-    println("********************************");
-    println("Leaderboard (Total Max Lifts):");
-    for (int i = 0; i < persons.size(); i++) {
-      Person person = persons.get(i);
-      println((i + 1) + ". " + person.name + " - Total Max: " + person.getTotalMaxLifts() + " lb");
-    }
-    println("********************************");
-    println();
+    displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
   }
 
-  void changeRankingCriteria( String chosenLift) {
+  void displayLiftMaxLeaderboard(String chosenLift) {
     bubbleSortLiftMax(persons, chosenLift);
+    displayLeaderboard("Leaderboard (Based on " + chosenLift + " Max Lift):", chosenLift);
+  }
 
-    // Display the leaderboard based on the chosen lift
-    println("********************************");
-    println("Leaderboard (Based on " + chosenLift + " Max Lift):");
-for (int i = 0; i < persons.size(); i++) {
+ void displayLeaderboard(String title, String extractMethod) {
+    textAlign(LEFT);
+    textSize(20);
+    fill(0);
+    // Display the title
+    text(title, 50, 30);
+
+    // Display the leaderboard on the canvas
+    for (int i = 0; i < persons.size(); i++) {
       Person person = persons.get(i);
-      println((i + 1) + ". " + person.name + " - " + chosenLift + " Max: " + person.getLiftMax(chosenLift) + " lb");
+      float value = extractMethod.equals("totalMaxLifts") ? person.getTotalMaxLifts() : person.getLiftMax(extractMethod);
+      fill(255,0,0);
+      text((i + 1) + ". " + person.name + " - " + value + " lb", 50, 70 + i * 30);
     }
-    println("********************************");
-    println();
   }
 
   // Bubble sort to order persons by their total max lifts in descending order 
