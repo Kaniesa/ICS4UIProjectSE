@@ -10,7 +10,7 @@
 //    - start from beginning (and users will backspace edit from here)
 
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage;
+boolean profilePageADD, profilePageEDIT, schedulePage, pause;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
@@ -34,6 +34,7 @@ void draw() {
     drawSchedule();
     dateAndTime();
     drawScheduleText();
+    drawWO();
   }
 }
 
@@ -51,6 +52,8 @@ void addProfile() {
   text("Email: " + stat[6], 50, 350 );
   text("Click Enter to Move to Next Entry!", 50, 450);
 }
+
+
 
 void keyPressed() {
   if ( key == TAB ) {
