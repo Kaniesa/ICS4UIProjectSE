@@ -29,7 +29,7 @@ class Leaderboard {
     // Display the leaderboard based on the chosen lift
     println("********************************");
     println("Leaderboard (Based on " + chosenLift + " Max Lift):");
-for (int i = 0; i < persons.size(); i++) {
+    for (int i = 0; i < persons.size(); i++) {
       Person person = persons.get(i);
       println((i + 1) + ". " + person.name + " - " + chosenLift + " Max: " + person.getLiftMax(chosenLift) + " lb");
     }
@@ -37,7 +37,7 @@ for (int i = 0; i < persons.size(); i++) {
     println();
   }
 
-  // Bubble sort to order persons by their total max lifts in descending order 
+  // Bubble sort to order persons by their total max lifts in descending order
   void bubbleSortTotalMaxLifts(ArrayList<Person> persons) {
     int n = persons.size();   // Get the number of persons
     boolean swapped;          // track if any swaps were made
@@ -50,15 +50,15 @@ for (int i = 0; i < persons.size(); i++) {
         if (a.getTotalMaxLifts() < b.getTotalMaxLifts()) {
           persons.set(i - 1, b);  // Swap person a and person b in the list
           persons.set(i, a);
-          swapped = true;     
+          swapped = true;
         }
       }
       n--;  // Decrease n as the largest element is now at the end
     } while (swapped);  // Continue sorting until no more swaps are made
   }
-  
+
   // Bubble sort to order persons by their max lift in the chosen exercise in descending order
-  void bubbleSortLiftMax(ArrayList<Person> persons,  String chosenLift) {
+  void bubbleSortLiftMax(ArrayList<Person> persons, String chosenLift) {
     int n = persons.size();   // Get the number of persons
     boolean swapped;          // track if any swaps were made
     do {

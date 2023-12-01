@@ -29,7 +29,6 @@ void draw() {
   if ( profilePageADD == true ) {
     background(255);
     addProfile();
-    
   } else if (schedulePage == true) {
     background(255);
     drawSchedule();
@@ -77,12 +76,10 @@ void keyPressed() {
       pw.close();
       profilePageADD = false;
     }
-  } 
-  else if ( key == CODED ){
-    if ( key == SHIFT ){
-     print("You are typing in Shift"); 
+  } else if ( key == CODED ) {
+    if ( key == SHIFT ) {
+      print("You are typing in Shift");
     }
-  }
-  else
+  } else
     typing = typing + key;
 }

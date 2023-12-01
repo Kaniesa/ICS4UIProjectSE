@@ -19,21 +19,30 @@ void drawScheduleText() {
   fill(0);
   textSize(65);
   text("Schedule", 370, 75);
-  textSize(45);
   textSize(35);
-  text("mon", 155, 185);
-  text("tues", 260, 185);
-  text("wed", 365, 185);
-  text("thurs", 475, 185);
-  text("fri", 605, 185);
-  text("sat", 695, 185);
-  text("sun", 795, 185);
-
-
+  text("mon", 165, 185);
+  text("tues", 270, 185);
+  text("wed", 370, 185);
+  text("thurs", 463, 185);
+  text("fri", 584, 185);
+  text("sat", 679, 185);
+  text("sun", 774, 185);
 }
+
 
 void drawSchedule() {
   fill(255);
   rect(150, 150, 700, 300);
   line(150, 200, 850, 200);
+  line(150, 275, 850, 275);
+  line(150, 365, 850, 365);
+
+
+  int numDays = 7;
+  float daySpacing = 700.0 / numDays;
+
+  for (int i = 1; i < numDays; i++) {
+    float x = 150 + i * daySpacing;
+    line(x, 150, x, 450);
+  }
 }
