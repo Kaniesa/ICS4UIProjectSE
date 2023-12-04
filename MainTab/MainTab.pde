@@ -1,8 +1,10 @@
+import g4p_controls.*;
 boolean profilePageADD, profilePageEDIT;
-String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
+String[] stat = new String[7]; // name, age, weight, mbp, ms, md, email
 String typing = "";
 int i, personCount;
 PrintWriter pw;
+Leaderboard leaderboard; // Added leaderboard instance
 
 //BUGS TO FIX//
 // -> make shift button work
@@ -17,16 +19,38 @@ PrintWriter pw;
 
 void setup() {
   size(1000, 500);
+  
+  createGUI();
+  size(1000, 500);
   for ( int a = 0; a < stat.length; a ++ ){
     stat[a] = "";
   }
+  
+  leaderboard = new Leaderboard(); // Initialize leaderboard
+  leaderboard.addPerson(p1); // add people through GUI 
+  for (int a = 0; a < stat.length; a++) {
+    stat[a] = "";
+  }
+
+  profilePageADD = false;
 }
 
-void draw(){
- if ( profilePageADD == true ){
-   background(255);
-   addProfile();
- }
+void draw() {
+  background(255);
+
+  if (profilePageADD) {
+    background(255);
+    addProfile();
+  } 
+  else if (schedulePage == true) {
+    background(255);
+    drawSchedule();
+    dateAndTime();
+    drawScheduleText();
+  }
+  else {
+    displayLeaderboard();
+  }
 }
 
 void addProfile(){
@@ -44,6 +68,10 @@ void addProfile(){
   text("Click Enter to Move to Next Entry!", 50, 450);
 }
 
+void displayLeaderboard() {
+  leaderboard.displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
+ }
+
 void keyPressed() {
   if ( key == TAB ){
     println("HULLO");
@@ -54,31 +82,28 @@ void keyPressed() {
     if ( L > 0 )
       typing = typing.substring(0, L-1);
   }
-  
-  else if ( key == ENTER ){
-    if ( i != stat.length -1 ){
+  else if ( key == ENTER ) {
+    if ( i != stat.length -1 ) {
       i += 1;
       typing = "";
-    }
+    } 
     else {
-     print("YAYYYY now i can commit identity theft...") ;
-     personCount ++;
-     for ( int b = 0; b < stat.length; b ++ ){
-       pw.println(stat[b]);
-       stat[b] = "";
-       i = 0;
-     }
-     pw.close();
-     profilePageADD = false;
+      print("YAYYYY now i can commit identity theft...") ;
+      personCount ++;
+      for ( int b = 0; b < stat.length; b ++ ) {
+        pw.println(stat[b]);
+        stat[b] = "";
+        i = 0;
+      }
+      pw.close();
+      profilePageADD = false;
     }
-  }
-  
-  else if ( key == CODED ){
-    if ( key == SHIFT ){
-     print("in caps now"); 
+  } 
+  else if ( key == CODED ) {
+    if ( key == SHIFT ) {
+      print("You are typing in Shift");
     }
-  }
-    
+  } 
   else
     typing = typing + key;
 }

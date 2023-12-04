@@ -6,8 +6,8 @@ class Person {
   float benchPressMax;
   float squatMax;
   float deadliftMax;
-  String email; 
- // Constructor 
+  String email;
+  // Constructor
   Person(String n, float w, int a, String e) {
     this.name = n;
     this.weight = w;
@@ -16,9 +16,8 @@ class Person {
     this.squatMax = 0;
     this.deadliftMax = 0;
     this.email = e;
-
   }
-// Methods
+  // Methods
   void setBenchPressMax(float max) {
     this.benchPressMax = max;
   }
@@ -42,7 +41,7 @@ class Person {
     }
   }
 
-  float getLiftMax(String exercise) { // Checks which lift is picked and then the set the max to that lift  
+  float getLiftMax(String exercise) { // Checks which lift is picked and then the set the max to that lift
     float max = 0;
     if (exercise.equals("benchPress")) {
       max = benchPressMax;
@@ -53,12 +52,12 @@ class Person {
     }
     return max;
   }
-  
-  float getTotalMaxLifts() { // adds up all the maxes 
+
+  float getTotalMaxLifts() { // adds up all the maxes
     return benchPressMax + squatMax + deadliftMax;
   }
-  
-  void displayOverview() { // prints an Overview of the Person 
+
+  void displayOverview() { // prints an Overview of the Person
     println("----------------------------------------");
     println("Name: " + name);
     println("Weight: " + weight + " lb");
@@ -67,6 +66,5 @@ class Person {
     println("Squat Max: " + squatMax + " lb");
     println("Deadlift Max: " + deadliftMax + " lb");
     println("Email: " + email);
-
   }
 }
