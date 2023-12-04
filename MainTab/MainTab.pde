@@ -1,3 +1,14 @@
+import g4p_controls.*;
+boolean profilePageADD, profilePageEDIT, schedulePage;
+String[] stat = new String[7]; // name, age, weight, mbp, ms, md, email
+String typing = "";
+int i, personCount;
+Person p1 = new Person("Oweis", 167, 17, "oweisthemoneky@gmail.com");
+Person p2 = new Person("Baraa", 177, 17, "baraa@wrdsb.ca");
+//Leaderboard leaderboard; // Added leaderboard instance
+PrintWriter pw;
+
+
 //BUGS TO FIX//
 // -> make shift button work
 // -> make sure last value doesn't carry over to next one
@@ -9,12 +20,6 @@
 //    - display files data on screen (so looks same as finished Add Person)
 //    - start from beginning (and users will backspace edit from here)
 
-import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage, pause;
-String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
-String typing = "";
-int i, personCount;
-PrintWriter pw;
 
 void setup() {
 
@@ -35,6 +40,15 @@ void draw() {
     dateAndTime();
     drawScheduleText();
     drawWO();
+
+    if (showPushWindow) {
+      PushdrawWindow();
+    } else if (showArmsWindow) {
+      ArmsdrawWindow();
+    } else if (showLegsWindow) {
+      LegsdrawWindow();
+    }
+
   }
 }
 
