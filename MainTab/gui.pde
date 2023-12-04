@@ -21,6 +21,7 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:guiWi
 public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:388698:
   profilePageADD = true;
   schedulePage = false;
+  pause=true;
 } //_CODE_:addperson:388698:
 
 public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPerson:330604:

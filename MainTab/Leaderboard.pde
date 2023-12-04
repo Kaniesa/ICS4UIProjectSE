@@ -9,15 +9,15 @@ class Leaderboard {
     persons.add(person);
   }
 
-  void displayTotalMaxLiftsLeaderboard() {
-    bubbleSortTotalMaxLifts(persons);
-    displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
-  }
+  //void displayTotalMaxLiftsLeaderboard() {
+  //  bubbleSortTotalMaxLifts(persons);
+  //  displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
+  //}
 
-  void displayLiftMaxLeaderboard(String chosenLift) {
-    bubbleSortLiftMax(persons, chosenLift);
-    displayLeaderboard("Leaderboard (Based on " + chosenLift + " Max Lift):", chosenLift);
-  }
+  //void displayLiftMaxLeaderboard(String chosenLift) {
+  //  bubbleSortLiftMax(persons, chosenLift);
+  //  displayLeaderboard("Leaderboard (Based on " + chosenLift + " Max Lift):", chosenLift);
+  //}
 
  void displayLeaderboard(String title, String extractMethod) {
     textAlign(LEFT);

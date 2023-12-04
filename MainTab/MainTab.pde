@@ -1,10 +1,14 @@
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT;
+boolean profilePageADD, profilePageEDIT, schedulePage;
 String[] stat = new String[7]; // name, age, weight, mbp, ms, md, email
 String typing = "";
 int i, personCount;
 PrintWriter pw;
 Leaderboard leaderboard; // Added leaderboard instance
+Person p1 = new Person("Oweis", 167, 17, "oweisthemoneky@gmail.com");
+Person p2 = new Person("Baraa", 177, 17, "baraa@wrdsb.ca");
+//Leaderboard leaderboard; // Added leaderboard instance
+
 
 //BUGS TO FIX//
 // -> make shift button work
@@ -18,38 +22,33 @@ Leaderboard leaderboard; // Added leaderboard instance
 //    - start from beginning (and users will backspace edit from here)
 
 void setup() {
-  size(1000, 500);
-  
+
   createGUI();
   size(1000, 500);
   for ( int a = 0; a < stat.length; a ++ ){
     stat[a] = "";
   }
-  
-  leaderboard = new Leaderboard(); // Initialize leaderboard
-  leaderboard.addPerson(p1); // add people through GUI 
-  for (int a = 0; a < stat.length; a++) {
-    stat[a] = "";
-  }
-
-  profilePageADD = false;
 }
 
 void draw() {
-  background(255);
-
-  if (profilePageADD) {
+  if ( profilePageADD == true ) {
     background(255);
     addProfile();
-  } 
-  else if (schedulePage == true) {
+  } else if (schedulePage == true) {
     background(255);
     drawSchedule();
     dateAndTime();
     drawScheduleText();
-  }
-  else {
-    displayLeaderboard();
+    drawWO();
+
+    if (showPushWindow) {
+      PushdrawWindow();
+    } else if (showArmsWindow) {
+      ArmsdrawWindow();
+    } else if (showLegsWindow) {
+      LegsdrawWindow();
+    }
+
   }
 }
 
@@ -68,9 +67,7 @@ void addProfile(){
   text("Click Enter to Move to Next Entry!", 50, 450);
 }
 
-void displayLeaderboard() {
-  leaderboard.displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
- }
+
 
 void keyPressed() {
   if ( key == TAB ){
@@ -81,7 +78,7 @@ void keyPressed() {
     int L = typing.length();
     if ( L > 0 )
       typing = typing.substring(0, L-1);
-  }
+  } 
   else if ( key == ENTER ) {
     if ( i != stat.length -1 ) {
       i += 1;
