@@ -90,30 +90,33 @@ boolean showArmsWindow = false;
 boolean showLegsWindow = false;
 
 void mousePressed() {
-  if (pause) {
-    loop();
-  } else {
-    noLoop();
-  }
+  if (schedulePage) {
+    // Only execute this code if on the schedule page
+    if (pause) {
+      loop();
+    } else {
+      noLoop();
+    }
 
-  if (mouseX > 150 && mouseX < 250 && mouseY > 200 && mouseY < 450 || mouseX > 450 && mouseX < 550 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showPushWindow = true;
-  } else if (mouseX > 250 && mouseX < 350 && mouseY > 200 && mouseY < 450 || mouseX > 550 && mouseX < 650 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showArmsWindow = true;
-  } else if (mouseX > 350 && mouseX < 450 && mouseY > 200 && mouseY < 450 || mouseX > 650 && mouseX < 750 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showLegsWindow = true;
-  }
+    if (mouseX > 150 && mouseX < 250 && mouseY > 200 && mouseY < 450 || mouseX > 450 && mouseX < 550 && mouseY > 200 && mouseY < 450) {
+      pause = false;
+      showPushWindow = true;
+    } else if (mouseX > 250 && mouseX < 350 && mouseY > 200 && mouseY < 450 || mouseX > 550 && mouseX < 650 && mouseY > 200 && mouseY < 450) {
+      pause = false;
+      showArmsWindow = true;
+    } else if (mouseX > 350 && mouseX < 450 && mouseY > 200 && mouseY < 450 || mouseX > 650 && mouseX < 750 && mouseY > 200 && mouseY < 450) {
+      pause = false;
+      showLegsWindow = true;
+    }
 
-  // Check for exit button click
-  if (showPushWindow || showArmsWindow || showLegsWindow) {
-    if (mouseX > 620 && mouseX < 650 && mouseY > 80 && mouseY < 100) {
-      pause = true;
-      showPushWindow = false;
-      showArmsWindow = false;
-      showLegsWindow = false;
+    // Check for exit button click
+    if (showPushWindow || showArmsWindow || showLegsWindow) {
+      if (mouseX > 620 && mouseX < 650 && mouseY > 80 && mouseY < 100) {
+        pause = true;
+        showPushWindow = false;
+        showArmsWindow = false;
+        showLegsWindow = false;
+      }
     }
   }
 
@@ -140,8 +143,6 @@ void mousePressed() {
     pause = false;
     LegsdrawWindow();
   }
-
-
 }
 
 

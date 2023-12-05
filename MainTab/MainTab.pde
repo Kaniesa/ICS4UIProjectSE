@@ -4,7 +4,7 @@ String[] stat = new String[7]; // name, age, weight, mbp, ms, md, email
 String typing = "";
 int i, personCount;
 PrintWriter pw;
-Leaderboard leaderboard; // Added leaderboard instance
+//Leaderboard leaderboard; // Added leaderboard instance
 Person p1 = new Person("Oweis", 167, 17, "oweisthemoneky@gmail.com");
 Person p2 = new Person("Baraa", 177, 17, "baraa@wrdsb.ca");
 //Leaderboard leaderboard; // Added leaderboard instance
