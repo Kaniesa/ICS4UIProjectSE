@@ -13,6 +13,8 @@ String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
 PrintWriter pw;
+String[] personNames = new String[0];
+String editProfile;
 
 void setup() {
 
@@ -27,7 +29,8 @@ void draw() {
   if ( profilePageADD == true ) {
     background(255);
     addProfile();
-  } else if (schedulePage == true) {
+  } 
+  else if (schedulePage == true) {
     background(255);
     drawSchedule();
     dateAndTime();
@@ -36,9 +39,11 @@ void draw() {
 
     if (showPushWindow) {
       PushdrawWindow();
-    } else if (showArmsWindow) {
+    } 
+    else if (showArmsWindow) {
       ArmsdrawWindow();
-    } else if (showLegsWindow) {
+    } 
+    else if (showLegsWindow) {
       LegsdrawWindow();
     }
   }
@@ -62,20 +67,22 @@ void addProfile() {
 
 
 void keyPressed() {
-  if ( key == TAB ) {
-    println("HULLO");
-    profilePageADD = true;
-  }
+  //Profile: Delete last character entered when backspace pressed
   if ( key == BACKSPACE ) {
     int L = typing.length();
     if ( L > 0 )
       typing = typing.substring(0, L-1);
-  } else if ( key == ENTER ) {
+  } 
+  //Profile: Go to next entry when enter clicked
+  else if ( key == ENTER ) {
     if ( i != stat.length -1 ) {
       i += 1;
       typing = "";
-    } else {
+    } 
+    else {
       print("YAYYYY now i can commit identity theft...") ;
+      personNames = append(personNames, "hi");
+      personNames[personCount] = stat[0];
       personCount ++;
       for ( int b = 0; b < stat.length; b ++ ) {
         pw.println(stat[b]);
@@ -83,12 +90,16 @@ void keyPressed() {
         i = 0;
       }
       pw.close();
+      saveStrings("data/list_330604", personNames);
       profilePageADD = false;
+      EditPerson.setItems(loadStrings("list_330604"), 0);
     }
-  } else if ( key == CODED ) {
+  } 
+  else if ( key == CODED ) {
     if ( key == SHIFT ) {
       print("You are typing in Shift");
     }
-  } else
+  } 
+  else
     typing = typing + key;
 }
