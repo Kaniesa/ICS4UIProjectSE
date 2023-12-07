@@ -29,21 +29,31 @@ void draw() {
   if ( profilePageADD == true ) {
     background(255);
     addProfile();
-  } 
-  else if (schedulePage == true) {
+  } else if (schedulePage == true) {
     background(255);
+    stroke(0);
     drawSchedule();
     dateAndTime();
     drawScheduleText();
     drawWO();
 
-    if (showPushWindow) {
+    if (showPushWindow && ppl) {
       PushdrawWindow();
-    } 
-    else if (showArmsWindow) {
+    } else if (showArmsWindow && ppl) {
       ArmsdrawWindow();
-    } 
-    else if (showLegsWindow) {
+    } else if (showLegsWindow && ppl) {
+      LegsdrawWindow();
+    } else if (showPushWindow && arnold) {
+      APushdrawWindow();
+    } else if (showArmsWindow && arnold) {
+      AArmsdrawWindow();
+    } else if (showLegsWindow && arnold) {
+      ALegsdrawWindow();
+    } else if (showPushWindow && threeday) {
+      PushdrawWindow();
+    } else if (showArmsWindow && threeday) {
+      ArmsdrawWindow();
+    } else if (showLegsWindow && threeday) {
       LegsdrawWindow();
     }
   }
@@ -72,14 +82,13 @@ void keyPressed() {
     int L = typing.length();
     if ( L > 0 )
       typing = typing.substring(0, L-1);
-  } 
+  }
   //Profile: Go to next entry when enter clicked
   else if ( key == ENTER ) {
     if ( i != stat.length -1 ) {
       i += 1;
       typing = "";
-    } 
-    else {
+    } else {
       print("YAYYYY now i can commit identity theft...") ;
       personNames = append(personNames, "hi");
       personNames[personCount] = stat[0];
@@ -94,12 +103,10 @@ void keyPressed() {
       profilePageADD = false;
       EditPerson.setItems(loadStrings("list_330604"), 0);
     }
-  } 
-  else if ( key == CODED ) {
+  } else if ( key == CODED ) {
     if ( key == SHIFT ) {
       print("You are typing in Shift");
     }
-  } 
-  else
+  } else
     typing = typing + key;
 }
