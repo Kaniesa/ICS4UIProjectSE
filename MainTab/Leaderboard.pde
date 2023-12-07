@@ -8,34 +8,65 @@ class Leaderboard {
   void addPerson(Person person) {
     persons.add(person);
   }
-
-  //void displayTotalMaxLiftsLeaderboard() {
-  //  bubbleSortTotalMaxLifts(persons);
-  //  displayLeaderboard("Leaderboard (Total Max Lifts):", "totalMaxLifts");
-  //}
-
-  //void displayLiftMaxLeaderboard(String chosenLift) {
-  //  bubbleSortLiftMax(persons, chosenLift);
-  //  displayLeaderboard("Leaderboard (Based on " + chosenLift + " Max Lift):", chosenLift);
-  //}
-
- void displayLeaderboard(String title, String extractMethod) {
-    textAlign(LEFT);
-    textSize(20);
-    fill(0);
-    // Display the title
-    text(title, 50, 30);
-
-    // Display the leaderboard on the canvas
-    for (int i = 0; i < persons.size(); i++) {
-      Person person = persons.get(i);
-      float value = extractMethod.equals("totalMaxLifts") ? person.getTotalMaxLifts() : person.getLiftMax(extractMethod);
-      fill(255,0,0);
-      text((i + 1) + ". " + person.name + " - " + value + " lb", 50, 70 + i * 30);
+  // Add this method to your Leaderboard class
+  public Person getPerson(String email) {
+    // Loop through existing persons in the leaderboard
+    for (Person existingPerson : persons) {
+      if (existingPerson.getEmail().equals(email)) {
+        return existingPerson;
+      }
     }
+
+    // Return null if the person with the specified email is not found
+    return null;
   }
 
+void drawLeaderboard() {
+  bubbleSortTotalMaxLifts(persons);
+
+  // Display the leaderboard
+  textSize(20);
+  textAlign(LEFT);
+  fill(0);  // Set the text color to black
+
+  float x = 50;  // X-coordinate for the leaderboard entries
+  float y = 50;  // Initial Y-coordinate for the first entry
+  float spacing = 30;  // Adjust this variable for spacing between entries
+
+  text("********************************", x, y);
+  y += spacing;  // Move down for the next line
+
+  text("Leaderboard (Total Max Lifts):", x, y);
+  y += spacing;  // Move down for the next line
+
+  for (int i = 0; i < persons.size(); i++) {
+    Person person = persons.get(i);
+    String leaderboardEntry = (i + 1) + ". " + person.name + " - Total Max: " + person.getTotalMaxLifts() + " lb";
+    text(leaderboardEntry, x, y);
+    y += spacing;  // Move down for the next entry
+  }
+
+  text("********************************", x, y);
+  y += spacing;  // Move down for the next line
+  println();  // Add extra space at the end
+}
+
   // Bubble sort to order persons by their total max lifts in descending order 
+  void changeRankingCriteria( String chosenLift) {
+    bubbleSortLiftMax(persons, chosenLift);
+
+    // Display the leaderboard based on the chosen lift
+    println("********************************");
+    println("Leaderboard (Based on " + chosenLift + " Max Lift):");
+    for (int i = 0; i < persons.size(); i++) {
+      Person person = persons.get(i);
+      println((i + 1) + ". " + person.name + " - " + chosenLift + " Max: " + person.getLiftMax(chosenLift) + " lb");
+    }
+    println("********************************");
+    println();
+  }
+
+  // Bubble sort to order persons by their total max lifts in descending order
   void bubbleSortTotalMaxLifts(ArrayList<Person> persons) {
     int n = persons.size();   // Get the number of persons
     boolean swapped;          // track if any swaps were made
@@ -48,15 +79,16 @@ class Leaderboard {
         if (a.getTotalMaxLifts() < b.getTotalMaxLifts()) {
           persons.set(i - 1, b);  // Swap person a and person b in the list
           persons.set(i, a);
-          swapped = true;     
+          swapped = true;
         }
       }
       n--;  // Decrease n as the largest element is now at the end
     } while (swapped);  // Continue sorting until no more swaps are made
   }
   
+
   // Bubble sort to order persons by their max lift in the chosen exercise in descending order
-  void bubbleSortLiftMax(ArrayList<Person> persons,  String chosenLift) {
+  void bubbleSortLiftMax(ArrayList<Person> persons, String chosenLift) {
     int n = persons.size();   // Get the number of persons
     boolean swapped;          // track if any swaps were made
     do {
