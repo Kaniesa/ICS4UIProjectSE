@@ -1,0 +1,7 @@
+people
+nice
+age
+weight
+suqat
+dead
+email
