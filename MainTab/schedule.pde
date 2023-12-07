@@ -45,6 +45,27 @@ void drawScheduleText() {
 void drawWO() {
   fill(0);
   textSize(25);
+
+  // Display workout schedule based on the selected split
+  switch (selectedWorkoutSplit) {
+    case "PushPullLeg":
+      drawPushPullLegSplit();
+      break;
+    case "ArnoldSplit":
+      drawArnoldSplit();
+      break;
+    case "3DaySplit":
+      draw3DaySplit();
+      break;
+    default:
+      // Default to Push Pull Leg Split if no valid selection
+      drawPushPullLegSplit();
+  }
+}
+
+void drawPushPullLegSplit() {
+  fill(0);
+  textSize(25);
   text("Push", 175, 245);
   text("Push", 175, 330);
   text("Push", 175, 415);
@@ -66,8 +87,141 @@ void drawWO() {
   text("Rest", 777, 245);
   text("Rest", 777, 330);
   text("Rest", 777, 415);
-  //Mkae this a loop when time is available
+  // ... Add more exercises as needed
 }
+
+
+void drawArnoldSplit() {
+  fill(0);
+  textSize(25);
+  text("Push", 175, 245);
+  text("Push", 175, 330);
+  text("Push", 175, 415);
+  text("Arms", 276, 245);
+  text("Arms", 276, 330);
+  text("Arms", 276, 415);
+  text("Legs", 375, 245);
+  text("Legs", 375, 330);
+  text("Legs", 375, 415);
+  text("Push", 475, 245);
+  text("Push", 475, 330);
+  text("Push", 475, 415);
+  text("Arms", 578, 245);
+  text("Arms", 578, 330);
+  text("Arms", 578, 415);
+  text("Legs", 678, 245);
+  text("Legs", 678, 330);
+  text("Legs", 678, 415);
+  text("Rest", 777, 245);
+  text("Rest", 777, 330);
+  text("Rest", 777, 415);
+}
+
+void draw3DaySplit() {
+  fill(0);
+  textSize(25);
+  text("Push", 175, 245);
+  text("Push", 175, 330);
+  text("Push", 175, 415);
+  text("Rest", 276, 245);
+  text("Rest", 276, 330);
+  text("Rest", 276, 415);
+  text("Pull", 380, 245);
+  text("Pull", 380, 330);
+  text("Pull", 380, 415);
+  text("Rest", 475, 245);
+  text("Rest", 475, 330);
+  text("Rest", 475, 415);
+  text("Legs", 578, 245);
+  text("Legs", 578, 330);
+  text("Legs", 578, 415);
+  text("Rest", 678, 245);
+  text("Rest", 678, 330);
+  text("Rest", 678, 415);
+  text("Rest", 777, 245);
+  text("Rest", 777, 330);
+  text("Rest", 777, 415);
+}
+
+void displayPushPullLegDays() {
+  fill(0);
+  textSize(25);
+  text("Push", 175, 245);
+  text("Push", 175, 330);
+  text("Push", 175, 415);
+  text("Pull", 280, 245);
+  text("Pull", 280, 330);
+  text("Pull", 280, 415);
+  text("Legs", 375, 245);
+  text("Legs", 375, 330);
+  text("Legs", 375, 415);
+  text("Push", 475, 245);
+  text("Push", 475, 330);
+  text("Push", 475, 415);
+  text("Pull", 582, 245);
+  text("Pull", 582, 330);
+  text("Pull", 582, 415);
+  text("Legs", 678, 245);
+  text("Legs", 678, 330);
+  text("Legs", 678, 415);
+  text("Rest", 777, 245);
+  text("Rest", 777, 330);
+  text("Rest", 777, 415);
+}
+
+
+void displayArnoldDays() {
+  fill(0);
+  textSize(25);
+  text("Push", 175, 245);
+  text("Push", 175, 330);
+  text("Push", 175, 415);
+  text("Arms", 276, 245);
+  text("Arms", 276, 330);
+  text("Arms", 276, 415);
+  text("Legs", 375, 245);
+  text("Legs", 375, 330);
+  text("Legs", 375, 415);
+  text("Push", 475, 245);
+  text("Push", 475, 330);
+  text("Push", 475, 415);
+  text("Arms", 578, 245);
+  text("Arms", 578, 330);
+  text("Arms", 578, 415);
+  text("Legs", 678, 245);
+  text("Legs", 678, 330);
+  text("Legs", 678, 415);
+  text("Rest", 777, 245);
+  text("Rest", 777, 330);
+  text("Rest", 777, 415);
+}
+
+void display3DaySplitDays() {
+  fill(0);
+  textSize(25);
+  text("Push", 175, 245);
+  text("Push", 175, 330);
+  text("Push", 175, 415);
+  text("Rest", 276, 245);
+  text("Rest", 276, 330);
+  text("Rest", 276, 415);
+  text("Pull", 380, 245);
+  text("Pull", 380, 330);
+  text("Pull", 380, 415);
+  text("Rest", 475, 245);
+  text("Rest", 475, 330);
+  text("Rest", 475, 415);
+  text("Legs", 578, 245);
+  text("Legs", 578, 330);
+  text("Legs", 578, 415);
+  text("Rest", 678, 245);
+  text("Rest", 678, 330);
+  text("Rest", 678, 415);
+  text("Rest", 777, 245);
+  text("Rest", 777, 330);
+  text("Rest", 777, 415);
+}
+
 
 void drawSchedule() {
   fill(255);
@@ -203,4 +357,24 @@ void LegsdrawWindow() {
   text("Leg Extensions: 3x10-15", 405, 250);
   text("Leg Curls: 3x10-15", 426, 280);
   text("Calf Raises", 456, 310);
+}
+
+
+//Changing the schedule Based on the DROP DOWN MENU
+
+void displayWorkoutSplitMessage(String workoutSplit) {
+  // Display messages based on the selected workout split
+  switch (workoutSplit) {
+    case "PushPullLeg":
+      println("You selected: Push Pull Leg Split");
+      break;
+    case "ArnoldSplit":
+      println("You selected: Arnold Split");
+      break;
+    case "3DaySplit":
+      println("You selected: 3-Day Workout Split");
+      break;
+    default:
+      println("Invalid selection");
+  }
 }

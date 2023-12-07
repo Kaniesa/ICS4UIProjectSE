@@ -33,8 +33,18 @@ public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692
   profilePageADD = false;
 } //_CODE_:schedule:692670:
 
+String selectedWorkoutSplit = "PushPullLeg";  // Default workout split
+
 public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:ScheduleOrder:486547:
-  println("dropList2 - GDropList >> GEvent." + event + " @ " + millis());
+   if (event == GEvent.SELECTED) {
+    // Get the selected workout split
+    int index = source.getSelectedIndex();
+    String[] splits = {"PushPullLeg", "ArnoldSplit", "3DaySplit"};
+    selectedWorkoutSplit = splits[index];
+
+    // Display the corresponding message
+    displayWorkoutSplitMessage(selectedWorkoutSplit);
+  }
 } //_CODE_:ScheduleOrder:486547:
 
 public void leaderboardMethod(GButton source, GEvent event) { //_CODE_:leaderboard:787741:
