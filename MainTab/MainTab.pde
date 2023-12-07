@@ -1,7 +1,5 @@
 //BUGS TO FIX//
-// -> make shift button work
 // -> make sure last value doesn't carry over to next one
-// -> remove tab from first entry of first person
 
 // CODE TO DO //
 // -> Edit feature
