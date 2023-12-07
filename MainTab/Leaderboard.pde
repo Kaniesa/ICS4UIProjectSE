@@ -8,18 +8,17 @@ class Leaderboard {
   void addPerson(Person person) {
     persons.add(person);
   }
-  // Add this method to your Leaderboard class
-  public Person getPerson(String email) {
-    // Loop through existing persons in the leaderboard
-    for (Person existingPerson : persons) {
-      if (existingPerson.getEmail().equals(email)) {
-        return existingPerson;
-      }
-    }
+  //public Person getPerson(String email) {
+  //  // Loop through existing persons in the leaderboard
+  //  for (Person existingPerson : persons) {
+  //    if (existingPerson.getEmail().equals(email)) {
+  //      return existingPerson;
+  //    }
+  //  }
 
     // Return null if the person with the specified email is not found
-    return null;
-  }
+  //  return null;
+  //}
 
 void drawLeaderboard() {
   bubbleSortTotalMaxLifts(persons);

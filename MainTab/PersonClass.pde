@@ -8,13 +8,13 @@ class Person {
   float deadliftMax;
   String email; 
  // Constructor 
-  Person(String n, float w, int a, String e) {
+  Person(String n, int a , float w, float b,float s, float d ,String e) {
     this.name = n;
     this.weight = w;
     this.age = a;
-    this.benchPressMax = 0;
-    this.squatMax = 0;
-    this.deadliftMax = 0;
+    this.benchPressMax = b;
+    this.squatMax = s;
+    this.deadliftMax = d;
     this.email = e;
 
   }
