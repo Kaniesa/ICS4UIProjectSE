@@ -4,12 +4,19 @@ int year = year();
 String d = String.valueOf(day);
 String m = String.valueOf(month);
 String y = String.valueOf(year);
+boolean ppl, arnold, threeday;
 
+boolean pause = false;
+boolean showPushWindow = false;
+boolean showArmsWindow = false;
+boolean showLegsWindow = false;
+boolean AshowPushWindow = false;
+boolean AshowArmsWindow = false;
+boolean AshowLegsWindow = false;
 
 //void setup() {
 //  size(1000, 500);
 //}
-
 
 //void draw() {
 //  background(255);
@@ -48,18 +55,30 @@ void drawWO() {
 
   // Display workout schedule based on the selected split
   switch (selectedWorkoutSplit) {
-    case "PushPullLeg":
-      drawPushPullLegSplit();
-      break;
-    case "ArnoldSplit":
-      drawArnoldSplit();
-      break;
-    case "3DaySplit":
-      draw3DaySplit();
-      break;
-    default:
-      // Default to Push Pull Leg Split if no valid selection
-      drawPushPullLegSplit();
+  case "PushPullLeg":
+    drawPushPullLegSplit();
+    ppl = true;
+    arnold = false;
+    threeday = false;
+    break;
+
+  case "ArnoldSplit":
+    drawArnoldSplit();
+    ppl = false;
+    arnold = true;
+    threeday = false;
+    break;
+
+  case "3DaySplit":
+    draw3DaySplit();
+    ppl = false;
+    arnold = false;
+    threeday = true;
+    break;
+
+  default:
+    // Default to Push Pull Leg Split if no valid selection
+    drawPushPullLegSplit();
   }
 }
 
@@ -87,7 +106,6 @@ void drawPushPullLegSplit() {
   text("Rest", 777, 245);
   text("Rest", 777, 330);
   text("Rest", 777, 415);
-  // ... Add more exercises as needed
 }
 
 
@@ -106,9 +124,9 @@ void drawArnoldSplit() {
   text("Push", 475, 245);
   text("Push", 475, 330);
   text("Push", 475, 415);
-  text("Arms", 578, 245);
-  text("Arms", 578, 330);
-  text("Arms", 578, 415);
+  text("Arms", 574, 245);
+  text("Arms", 574, 330);
+  text("Arms", 574, 415);
   text("Legs", 678, 245);
   text("Legs", 678, 330);
   text("Legs", 678, 415);
@@ -176,18 +194,18 @@ void displayArnoldDays() {
   text("Push", 175, 245);
   text("Push", 175, 330);
   text("Push", 175, 415);
-  text("Arms", 276, 245);
-  text("Arms", 276, 330);
-  text("Arms", 276, 415);
+  text("Arms", 274, 245);
+  text("Arms", 274, 330);
+  text("Arms", 274, 415);
   text("Legs", 375, 245);
   text("Legs", 375, 330);
   text("Legs", 375, 415);
   text("Push", 475, 245);
   text("Push", 475, 330);
   text("Push", 475, 415);
-  text("Arms", 578, 245);
-  text("Arms", 578, 330);
-  text("Arms", 578, 415);
+  text("Arms", 568, 245);
+  text("Arms", 568, 330);
+  text("Arms", 568, 415);
   text("Legs", 678, 245);
   text("Legs", 678, 330);
   text("Legs", 678, 415);
@@ -222,7 +240,6 @@ void display3DaySplitDays() {
   text("Rest", 777, 415);
 }
 
-
 void drawSchedule() {
   fill(255);
   rect(150, 150, 700, 300);
@@ -238,11 +255,6 @@ void drawSchedule() {
   }
 }
 
-boolean pause = false;
-boolean showPushWindow = false;
-boolean showArmsWindow = false;
-boolean showLegsWindow = false;
-
 void mousePressed() {
   if (pause) {
     loop();
@@ -250,53 +262,21 @@ void mousePressed() {
     noLoop();
   }
 
-  if (mouseX > 150 && mouseX < 250 && mouseY > 200 && mouseY < 450 || mouseX > 450 && mouseX < 550 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showPushWindow = true;
-  } else if (mouseX > 250 && mouseX < 350 && mouseY > 200 && mouseY < 450 || mouseX > 550 && mouseX < 650 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showArmsWindow = true;
-  } else if (mouseX > 350 && mouseX < 450 && mouseY > 200 && mouseY < 450 || mouseX > 650 && mouseX < 750 && mouseY > 200 && mouseY < 450) {
-    pause = false;
-    showLegsWindow = true;
-  }
-
-  // Check for exit button click
-  if (showPushWindow || showArmsWindow || showLegsWindow) {
-    if (mouseX > 620 && mouseX < 650 && mouseY > 80 && mouseY < 100) {
-      pause = true;
-      showPushWindow = false;
-      showArmsWindow = false;
-      showLegsWindow = false;
+  if (schedulePage) {
+    if (ppl) {
+      PushclickHandler();
+    } else if (arnold) {
+      ArnoldclickHandler();
+    } else if (threeday) {
+    ThreedayclickHandler();
     }
+    buttonClickHandler();
   }
-
-
-  if (pause == true) {
-    loop();
-  } else if (pause != true) {
-    noLoop();
-  }
-
-  if (mouseX>150 && mouseX<250 && mouseY>200 && mouseY<450 ||mouseX>450 && mouseX<550 && mouseY>200 && mouseY<450  ) {
-    println("push");
-    stroke(0);
-    pause = false;
-    PushdrawWindow();
-  } else if (mouseX>250 && mouseX<350 && mouseY>200 && mouseY<450 ||mouseX>550 && mouseX<650 && mouseY>200 && mouseY<450  ) {
-    println("pull");
-    stroke(0);
-    pause = false;
-    ArmsdrawWindow();
-  } else if (mouseX>350 && mouseX<450 && mouseY>200 && mouseY<450 ||mouseX>650 && mouseX<750 && mouseY>200 && mouseY<450  ) {
-    println("legs");
-    stroke(0);
-    pause = false;
-    LegsdrawWindow();
-  }
-
-
 }
+
+//else if (threeday){
+//  ThreedayclickHandler();
+//}
 
 
 void PushdrawWindow() {
@@ -359,22 +339,80 @@ void LegsdrawWindow() {
   text("Calf Raises", 456, 310);
 }
 
-
 //Changing the schedule Based on the DROP DOWN MENU
-
 void displayWorkoutSplitMessage(String workoutSplit) {
   // Display messages based on the selected workout split
   switch (workoutSplit) {
-    case "PushPullLeg":
-      println("You selected: Push Pull Leg Split");
-      break;
-    case "ArnoldSplit":
-      println("You selected: Arnold Split");
-      break;
-    case "3DaySplit":
-      println("You selected: 3-Day Workout Split");
-      break;
-    default:
-      println("Invalid selection");
+  case "PushPullLeg":
+    println("You selected: Push Pull Leg Split");
+    break;
+  case "ArnoldSplit":
+    println("You selected: Arnold Split");
+    break;
+  case "3DaySplit":
+    println("You selected: 3-Day Workout Split");
+    break;
+  default:
+    println("Invalid selection");
   }
+}
+
+void APushdrawWindow() {
+  fill(255);
+  stroke(0, 145, 255);
+  rect(350, 75, 300, 325);
+  // Exit button
+  fill(255, 0, 0);
+  rect(620, 80, 30, 20);
+  // Text
+  fill(0);
+  textSize(35);
+  text("Exercises", 433, 120);
+  //Push Draw
+  textSize(20);
+  text("Bench Press: 3x6-8", 420, 190);
+  text("Shoulder Press: 3x8-10", 408, 220);
+  text("Incline Dumbbell Flyes: 3x10-15", 370, 250);
+  text("Triceps Pushdowns: 3x10-15", 382, 280);
+  text("Dips: 3x10-12", 447, 310);
+}
+
+void AArmsdrawWindow() {
+  fill(255);
+  stroke(0, 145, 255);
+  rect(350, 75, 300, 325);
+  // Exit button
+  fill(255, 0, 0);
+  rect(620, 80, 30, 20);
+  // Text
+  fill(0);
+  textSize(35);
+  text("Exercises", 433, 120);
+  //Push Draw
+  textSize(20);
+  text("Overhead Press: 4x6-8", 410, 190);
+  text("Arnold Press: 4x8-10", 415, 220);
+  text("Skull Crushers: 3x12-15", 406, 250);
+  text("Face Pulls: 4x8-10", 423, 280);
+  text("Bicep 21s: 3 sets", 434, 310);
+}
+
+void ALegsdrawWindow() {
+  fill(255);
+  stroke(0, 145, 255);
+  rect(350, 75, 300, 325);
+  // Exit button
+  fill(255, 0, 0);
+  rect(620, 80, 30, 20);
+  // Text
+  fill(0);
+  textSize(35);
+  text("Exercises", 433, 120);
+  //Push Draw
+  textSize(20);
+  text("Squats: 3x6-8", 442, 190);
+  text("Leg Press: 3x8-10", 430, 220);
+  text("Cable Crunches: 2x25", 410, 250);
+  text("Hack Squat: 3x8-10", 420, 280);
+  text("Calf Raises: 3x8-16", 426, 310);
 }
