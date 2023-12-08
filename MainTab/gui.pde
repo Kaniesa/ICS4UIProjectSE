@@ -30,6 +30,8 @@ public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:3
 } //_CODE_:addperson:388698:
 
 public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPerson:330604:
+  editProfile = EditPerson.getSelectedText();
+  profilePageEDIT = true;
   println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:EditPerson:330604:
 
