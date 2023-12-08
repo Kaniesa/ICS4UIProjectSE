@@ -4,7 +4,7 @@ String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
 PrintWriter pw;
-String[] personNames = new String[0];
+String[] personNames = {"--"};
 String selectedProfile;
 float red = 165;
 float green = 5;
@@ -14,6 +14,13 @@ Leaderboard globalleaderboard;
 
 void setup() {
 
+  String[] resetProfiles = loadStrings("list_330604");
+  for ( int r = 0; r < resetProfiles.length; r ++ ){
+    resetProfiles[r] = "";
+  }
+  resetProfiles[0] = "--";
+  saveStrings("data/list_330604", resetProfiles);
+  
   createGUI();
   size(1000, 500);
   for ( int a = 0; a < stat.length; a ++ ) {
