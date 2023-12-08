@@ -8,7 +8,7 @@
 //    - start from beginning (and users will backspace edit from here)
 
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage;
+boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
@@ -45,6 +45,18 @@ void draw() {
   } else if ( LeaderboardPage == true) {
     background(255);
     globalleaderboard.drawLeaderboard();
+    if (leaderboardmethod == "benchpress") { // the person selects the drop down in GUI (bench)
+      background(255);
+      globalleaderboard.SpecificExcerDraw("benchPress"); 
+   }
+   else if ( leaderboardmethod == "squat" ){
+     background (255);
+    globalleaderboard.SpecificExcerDraw("squat"); 
+   }
+    else if ( leaderboardmethod == "deadlift" ) {
+     background (255);
+     globalleaderboard.SpecificExcerDraw("deadlift"); 
+    }
   }
 }
 

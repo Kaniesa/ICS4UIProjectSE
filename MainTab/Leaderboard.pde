@@ -8,6 +8,35 @@ class Leaderboard {
   void addPerson(Person person) {
     persons.add(person);
   }
+  void SpecificExcerDraw(String a) {
+      bubbleSortLiftMax(persons, a);
+
+  // Display the leaderboard
+  textSize(20);
+  textAlign(LEFT);
+  fill(0);  // Set the text color to black
+
+  float x = 50;  // X-coordinate for the leaderboard entries
+  float y = 50;  // Initial Y-coordinate for the first entry
+  float spacing = 30;  // Adjust this variable for spacing between entries
+
+  text("********************************", x, y);
+  y += spacing;  // Move down for the next line
+
+  text("Leaderboard (Lift Selected):", x, y);
+  y += spacing;  // Move down for the next line
+
+  for (int i = 0; i < persons.size(); i++) {
+    Person person = persons.get(i);
+    String leaderboardEntry = (i + 1) + ". " + person.name + " - Selected Lift: " + person.getLiftMax(a) + " lb";
+    text(leaderboardEntry, x, y);
+    y += spacing;  // Move down for the next entry
+  }
+
+  text("********************************", x, y);
+  y += spacing;  // Move down for the next line
+  println();  // Add extra space at the end
+}
   //public Person getPerson(String email) {
   //  // Loop through existing persons in the leaderboard
   //  for (Person existingPerson : persons) {
