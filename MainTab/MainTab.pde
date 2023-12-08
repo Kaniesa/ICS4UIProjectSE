@@ -1,12 +1,3 @@
-//BUGS TO FIX//
-// -> make sure last value doesn't carry over to next one
-
-// CODE TO DO //
-// -> Edit feature
-//    - get files from dropdown
-//    - display files data on screen (so looks same as finished Add Person)
-//    - start from beginning (and users will backspace edit from here)
-
 import g4p_controls.*;
 boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
@@ -14,7 +5,7 @@ String typing = "";
 int i, personCount;
 PrintWriter pw;
 String[] personNames = new String[0];
-String editProfile;
+String selectedProfile;
 float red = 165;
 float green = 5;
 float blue = 5;
@@ -35,11 +26,25 @@ void draw() {
 
   welcome();
   image(img, 250, 20);
+  
   if ( profilePageADD == true ) {
     background(255);
-    addProfile();
+    openProfile();
     image(img, 860, 20, width/8, height/4);
-  } else if (schedulePage == true) {
+  } 
+  else if ( profilePageEDIT == true ){
+    if ( i == 0 ){
+      String[] allData = loadStrings( "data/" + selectedProfile + ".txt" );
+      for ( int j = 0; j < allData.length; j++ ){
+        stat[j] = allData[j];
+      }
+    }
+    background(255);
+    openProfile();
+    image(img, 860, 20, width/8, height/4);
+  }
+  
+  else if (schedulePage == true) {
     background(255);
     stroke(red, green, blue);
     drawSchedule();
@@ -68,27 +73,29 @@ void draw() {
     } else if (showLegsWindow && threeday) {
       LegsdrawWindow();
     }
-  } else if ( LeaderboardPage == true) {
+  } 
+  else if ( LeaderboardPage == true) {
     if (leaderboardmethod == "total") { // the person selects the drop down in GUI (bench)
-    background(255);
-    globalleaderboard.SpecificExcerDraw("all");
-    } else if (leaderboardmethod == "benchpress") { // the person selects the drop down in GUI (bench)
+      background(255);
+      globalleaderboard.SpecificExcerDraw("all");
+    } 
+    else if (leaderboardmethod == "benchpress") { // the person selects the drop down in GUI (bench)
       background(255);
       globalleaderboard.SpecificExcerDraw("benchPress"); 
    }
    else if ( leaderboardmethod == "squat" ){
      background (255);
-    globalleaderboard.SpecificExcerDraw("squat"); 
+     globalleaderboard.SpecificExcerDraw("squat"); 
    }
     else if ( leaderboardmethod == "deadlift" ) {
-     background (255);
-     globalleaderboard.SpecificExcerDraw("deadlift"); 
+      background (255);
+      globalleaderboard.SpecificExcerDraw("deadlift"); 
     }
   }
 }
 
 
-void addProfile() {
+void openProfile() {
   fill(red, green, blue);
   textSize(30);
   stat[i] = typing;
@@ -113,8 +120,8 @@ void keyPressed() {
   }
   //Profile: Go to next entry when enter clicked
   else if ( key == ENTER ) {
-    if ( i == 0 ){
-      pw = createWriter("data/" + stat[0] + " .txt"); 
+    if ( i == 0 && profilePageEDIT == false ){
+      pw = createWriter("data/" + stat[0] + ".txt"); 
       i += 1;
       typing = "";
     }
@@ -122,16 +129,21 @@ void keyPressed() {
       i += 1;
       typing = "";
     } 
+    else if ( profilePageEDIT == true ){
+      saveStrings("data/" + selectedProfile, stat);
+      i = 0;
+      profilePageEDIT = false;
+      replaceOldFile(selectedProfile);
+    }
     else {
       print("YAYYYY now i can commit identity theft...") ;
-      personNames = append(personNames, "hi");
-      personNames[personCount] = stat[0];
+      personNames = append(personNames, stat[0]);
       personCount ++;
       for ( int b = 0; b < stat.length; b ++ ) {
         pw.println(stat[b]);
         stat[b] = "";
-        i = 0;
       }
+      i = 0;
       pw.close();
       saveStrings("data/list_330604", personNames);
       profilePageADD = false;
@@ -144,4 +156,13 @@ void keyPressed() {
   } 
   else
     typing = typing + key;
+}
+
+void replaceOldFile(String fileName){
+  pw = createWriter("data/" + fileName + ".txt"); 
+  for ( int b = 0; b < stat.length; b ++ ) {
+    pw.println(stat[b]);
+    stat[b] = "";
+  }
+  pw.close();
 }
