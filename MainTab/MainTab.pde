@@ -15,6 +15,11 @@ int i, personCount;
 PrintWriter pw;
 String[] personNames = new String[0];
 String editProfile;
+float red = 165;
+float green = 5;
+float blue = 5;
+PImage img;
+  PFont font;
 
 void setup() {
 
@@ -23,12 +28,21 @@ void setup() {
   for ( int a = 0; a < stat.length; a ++ ) {
     stat[a] = "";
   }
+  img = loadImage("logo.png");
 }
 
 void draw() {
+  font = createFont("RugenExpanded.ttf", 128);
+  textFont(font);
+  fill(142, 35, 32);
+  textSize(54);
+
+  text("Welcome To", 237, 85);
+  image(img, 250, 20);
   if ( profilePageADD == true ) {
     background(255);
     addProfile();
+    image(img, 860, 20, width/8, height/4);
   } else if (schedulePage == true) {
     background(255);
     stroke(0);
@@ -36,6 +50,8 @@ void draw() {
     dateAndTime();
     drawScheduleText();
     drawWO();
+    image(img, 860, 20, width/8, height/4);
+
 
     if (showPushWindow && ppl) {
       PushdrawWindow();
