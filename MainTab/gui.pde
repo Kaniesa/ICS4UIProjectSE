@@ -67,7 +67,7 @@ public void leaderboardMethod(GButton source, GEvent event) { //_CODE_:leaderboa
 public void leaderboardStatMethod(GDropList source, GEvent event) { //_CODE_:LeaderboardStat:320203:
 if (event == GEvent.SELECTED) {
 int index = source.getSelectedIndex();
-    String[] excercise = {"benchpress", "squat", "deadlift"};
+    String[] excercise = {"all","benchpress", "squat", "deadlift"};
     leaderboardmethod = excercise[index];
   }
   
