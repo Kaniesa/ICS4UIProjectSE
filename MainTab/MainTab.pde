@@ -8,7 +8,7 @@
 //    - start from beginning (and users will backspace edit from here)
 
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage;
+boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
@@ -19,7 +19,7 @@ float red = 165;
 float green = 5;
 float blue = 5;
 PImage img;
-  PFont font;
+Leaderboard globalleaderboard;
 
 void setup() {
 
@@ -32,12 +32,8 @@ void setup() {
 }
 
 void draw() {
-  font = createFont("RugenExpanded.ttf", 128);
-  textFont(font);
-  fill(142, 35, 32);
-  textSize(54);
 
-  text("Welcome To", 237, 85);
+  welcome();
   image(img, 250, 20);
   if ( profilePageADD == true ) {
     background(255);
@@ -45,7 +41,7 @@ void draw() {
     image(img, 860, 20, width/8, height/4);
   } else if (schedulePage == true) {
     background(255);
-    stroke(0);
+    stroke(red, green, blue);
     drawSchedule();
     dateAndTime();
     drawScheduleText();
@@ -72,13 +68,29 @@ void draw() {
     } else if (showLegsWindow && threeday) {
       LegsdrawWindow();
     }
+  } else if ( LeaderboardPage == true) {
+    if (leaderboardmethod == "total") { // the person selects the drop down in GUI (bench)
+    background(255);
+    globalleaderboard.SpecificExcerDraw("all");
+    } else if (leaderboardmethod == "benchpress") { // the person selects the drop down in GUI (bench)
+      background(255);
+      globalleaderboard.SpecificExcerDraw("benchPress"); 
+   }
+   else if ( leaderboardmethod == "squat" ){
+     background (255);
+    globalleaderboard.SpecificExcerDraw("squat"); 
+   }
+    else if ( leaderboardmethod == "deadlift" ) {
+     background (255);
+     globalleaderboard.SpecificExcerDraw("deadlift"); 
+    }
   }
 }
 
+
 void addProfile() {
-  fill(0);
+  fill(red, green, blue);
   textSize(30);
-  pw = createWriter("data/NewPerson" + personCount + " .txt");
   stat[i] = typing;
   text("Name: " + stat[0], 50, 50 );
   text("Age: " + stat[1], 50, 100 );
@@ -101,10 +113,16 @@ void keyPressed() {
   }
   //Profile: Go to next entry when enter clicked
   else if ( key == ENTER ) {
-    if ( i != stat.length -1 ) {
+    if ( i == 0 ){
+      pw = createWriter("data/" + stat[0] + " .txt"); 
       i += 1;
       typing = "";
-    } else {
+    }
+    else if ( i != stat.length -1 ) {
+      i += 1;
+      typing = "";
+    } 
+    else {
       print("YAYYYY now i can commit identity theft...") ;
       personNames = append(personNames, "hi");
       personNames[personCount] = stat[0];
@@ -119,10 +137,11 @@ void keyPressed() {
       profilePageADD = false;
       EditPerson.setItems(loadStrings("list_330604"), 0);
     }
-  } else if ( key == CODED ) {
+  } 
+  else if ( key == CODED ) {
     if ( key == SHIFT ) {
-      print("You are typing in Shift");
     }
-  } else
+  } 
+  else
     typing = typing + key;
 }

@@ -26,7 +26,7 @@ boolean AshowLegsWindow = false;
 //  drawWO();
 //}
 void dateAndTime() {
-  fill(0);
+  fill(red, green, blue);
   textSize(20);
   text(y, 900, 20);
   text(",", 940, 20);
@@ -36,7 +36,7 @@ void dateAndTime() {
 }
 
 void drawScheduleText() {
-  fill(0);
+  fill(red, green, blue);
   textSize(65);
   text("Schedule", 374, 75);
   textSize(35);
@@ -50,7 +50,7 @@ void drawScheduleText() {
 }
 
 void drawWO() {
-  fill(0);
+  fill(red, green, blue);
   textSize(25);
 
   // Display workout schedule based on the selected split
@@ -281,7 +281,7 @@ void mousePressed() {
 
 void PushdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -301,7 +301,7 @@ void PushdrawWindow() {
 
 void ArmsdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -321,7 +321,7 @@ void ArmsdrawWindow() {
 
 void LegsdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -359,7 +359,7 @@ void displayWorkoutSplitMessage(String workoutSplit) {
 
 void APushdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -379,7 +379,7 @@ void APushdrawWindow() {
 
 void AArmsdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -399,7 +399,7 @@ void AArmsdrawWindow() {
 
 void ALegsdrawWindow() {
   fill(255);
-  stroke(0, 145, 255);
+  stroke(red,green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -415,4 +415,15 @@ void ALegsdrawWindow() {
   text("Cable Crunches: 2x25", 410, 250);
   text("Hack Squat: 3x8-10", 420, 280);
   text("Calf Raises: 3x8-16", 426, 310);
+}
+
+void welcome() {
+  fill(red, green, blue);
+  textSize(105);
+
+  // Set the specific font for the "Welcome To" line
+
+  text("Welcome To", 232, 85);
+
+  // Reset the font to the default for the rest of the text
 }

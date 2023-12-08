@@ -23,6 +23,8 @@ public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:3
   schedulePage = false;
   ppl = false;
   arnold = false;
+    LeaderboardPage = false;
+
   threeday = false;
   pause=true;
 } //_CODE_:addperson:388698:
@@ -34,6 +36,8 @@ public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPers
 public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692670:
   schedulePage = true;
   profilePageADD = false;
+   LeaderboardPage = false;
+
 } //_CODE_:schedule:692670:
 
 String selectedWorkoutSplit = "PushPullLeg";  // Default workout split
@@ -63,6 +67,25 @@ int index = source.getSelectedIndex();
   }
   
   } //_CODE_:LeaderboardStat:320203:
+
+
+
+synchronized public void win_draw2(PApplet appc, GWinData data) { //_CODE_:window2:862588:
+  appc.background(230);
+} //_CODE_:window2:862588:
+
+public void redMethoid(GSlider source, GEvent event) { //_CODE_:redd:542664:
+  red = redd.getValueF();
+} //_CODE_:redd:542664:
+
+public void greenMethod(GSlider source, GEvent event) { //_CODE_:greenn:226017:
+  green = greenn.getValueF();
+} //_CODE_:greenn:226017:
+
+public void blueMethod(GSlider source, GEvent event) { //_CODE_:bluee:732679:
+  blue = bluee.getValueF();
+} //_CODE_:bluee:732679:
+
 
 
 
@@ -112,6 +135,36 @@ public void createGUI() {
   powerliftPro.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   powerliftPro.setOpaque(false);
   guiWindow.loop();
+    G4P.messagesEnabled(false);
+  G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
+  G4P.setMouseOverEnabled(false);
+  surface.setTitle("Sketch Window");
+  window2 = GWindow.getWindow(this, "THEME", 0, 0, 240, 120, JAVA2D);
+  window2.noLoop();
+  window2.setActionOnClose(G4P.KEEP_OPEN);
+  window2.addDrawHandler(this, "win_draw2");
+  redd = new GSlider(window2, 8, 3, 100, 40, 10.0);
+  redd.setLimits(165.0, 0.0, 225.0);
+  redd.setNumberFormat(G4P.DECIMAL, 2);
+  redd.setLocalColorScheme(GCScheme.RED_SCHEME);
+  redd.setOpaque(false);
+  redd.addEventHandler(this, "redMethoid");
+  greenn = new GSlider(window2, 8, 29, 100, 40, 10.0);
+  greenn.setLimits(90.0, 0.0, 225.0);
+  greenn.setNumberFormat(G4P.DECIMAL, 2);
+  greenn.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  greenn.setOpaque(false);
+  greenn.addEventHandler(this, "greenMethod");
+  bluee = new GSlider(window2, 8, 54, 100, 40, 10.0);
+  bluee.setLimits(90.0, 0.0, 225.0);
+  bluee.setNumberFormat(G4P.DECIMAL, 2);
+  bluee.setOpaque(false);
+  bluee.addEventHandler(this, "blueMethod");
+  label1 = new GLabel(window2, 137, 54, 80, 20);
+  label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label1.setText("Drag To Edit Theme!");
+  label1.setOpaque(false);
+  window2.loop();
 }
 
 // Variable declarations
@@ -125,3 +178,8 @@ GDropList ScheduleOrder;
 GButton leaderboard;
 GDropList LeaderboardStat;
 GLabel powerliftPro;
+GWindow window2;
+GSlider redd; 
+GSlider greenn; 
+GSlider bluee; 
+GLabel label1; 
