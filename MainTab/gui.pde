@@ -101,7 +101,7 @@ public void createGUI() {
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  guiWindow = GWindow.getWindow(this, "GUI", 0, 0, 225, 300, JAVA2D);
+  guiWindow = GWindow.getWindow(this, "GUI", 0, 0, 225, 350, JAVA2D);
   guiWindow.noLoop();
   guiWindow.setActionOnClose(G4P.KEEP_OPEN);
   guiWindow.addDrawHandler(this, "win_draw1");
@@ -130,7 +130,7 @@ public void createGUI() {
   leaderboard.setText("Leaderboard");
   leaderboard.setLocalColorScheme(GCScheme.RED_SCHEME);
   leaderboard.addEventHandler(this, "leaderboardMethod");
-  LeaderboardStat = new GDropList(guiWindow, 50, 235, 120, 100, 3, 10);
+  LeaderboardStat = new GDropList(guiWindow, 50, 235, 120, 100, 4, 10);
   LeaderboardStat.setItems(loadStrings("list_320203"), 0);
   LeaderboardStat.setLocalColorScheme(GCScheme.RED_SCHEME);
   LeaderboardStat.addEventHandler(this, "leaderboardStatMethod");
