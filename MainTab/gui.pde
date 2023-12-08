@@ -41,7 +41,7 @@ public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPers
 public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692670:
   schedulePage = true;
   profilePageADD = false;
-   LeaderboardPage = false;
+  LeaderboardPage = false;
 
 } //_CODE_:schedule:692670:
 

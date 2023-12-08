@@ -13,7 +13,7 @@ PImage img;
 Leaderboard globalleaderboard;
 
 void setup() {
-
+  globalleaderboard = new Leaderboard(); 
   String[] resetProfiles = loadStrings("list_330604");
   for ( int r = 0; r < resetProfiles.length; r ++ ){
     resetProfiles[r] = "";
@@ -165,6 +165,19 @@ void keyPressed() {
     else {
       print("YAYYYY now i can commit identity theft...") ;
       personNames = append(personNames, stat[0]);
+       Person newPerson = new Person(
+        stat[0],                      // Name
+        Integer.parseInt(stat[1]),    // Age
+        Float.parseFloat(stat[2]),    // Weight
+        Float.parseFloat(stat[3]),    // Max Benchpress
+        Float.parseFloat(stat[4]),    // Max Squat
+        Float.parseFloat(stat[5]),    // Max Deadlift
+        stat[6]                       // Email
+      );
+
+      // Add the person to the leaderboard
+      globalleaderboard.addPerson(newPerson);
+      println("Person added to the leaderboard successfully.");
       personCount ++;
       for ( int b = 0; b < stat.length; b ++ ) {
         pw.println(stat[b]);
