@@ -78,7 +78,6 @@ void draw() {
 void addProfile() {
   fill(0);
   textSize(30);
-  pw = createWriter("data/NewPerson" + personCount + " .txt");
   stat[i] = typing;
   text("Name: " + stat[0], 50, 50 );
   text("Age: " + stat[1], 50, 100 );
@@ -101,10 +100,16 @@ void keyPressed() {
   }
   //Profile: Go to next entry when enter clicked
   else if ( key == ENTER ) {
-    if ( i != stat.length -1 ) {
+    if ( i == 0 ){
+      pw = createWriter("data/" + stat[0] + " .txt"); 
       i += 1;
       typing = "";
-    } else {
+    }
+    else if ( i != stat.length -1 ) {
+      i += 1;
+      typing = "";
+    } 
+    else {
       print("YAYYYY now i can commit identity theft...") ;
       personNames = append(personNames, "hi");
       personNames[personCount] = stat[0];
@@ -119,10 +124,11 @@ void keyPressed() {
       profilePageADD = false;
       EditPerson.setItems(loadStrings("list_330604"), 0);
     }
-  } else if ( key == CODED ) {
+  } 
+  else if ( key == CODED ) {
     if ( key == SHIFT ) {
-      print("You are typing in Shift");
     }
-  } else
+  } 
+  else
     typing = typing + key;
 }
