@@ -8,14 +8,13 @@
 //    - start from beginning (and users will backspace edit from here)
 
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage;
+boolean profilePageADD, profilePageEDIT, schedulePage;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
 PrintWriter pw;
 String[] personNames = new String[0];
 String editProfile;
-Leaderboard globalleaderboard;
 
 void setup() {
 
@@ -24,7 +23,6 @@ void setup() {
   for ( int a = 0; a < stat.length; a ++ ) {
     stat[a] = "";
   }
-  globalleaderboard = new Leaderboard();
 }
 
 void draw() {
@@ -58,10 +56,6 @@ void draw() {
     } else if (showLegsWindow && threeday) {
       LegsdrawWindow();
     }
-  }
-  else if ( LeaderboardPage == true) {
-    background(255);
-    globalleaderboard.drawLeaderboard();
   }
 }
 
@@ -99,16 +93,6 @@ void keyPressed() {
       personNames = append(personNames, "hi");
       personNames[personCount] = stat[0];
       personCount ++;
-      Person newPerson = new Person(
-        stat[0],                      // Name
-        Integer.parseInt(stat[1]),    // Age
-        Float.parseFloat(stat[2]),    // Weight
-        Float.parseFloat(stat[3]),    // Max Benchpress
-        Float.parseFloat(stat[4]),    // Max Squat
-        Float.parseFloat(stat[5]),    // Max Deadlift
-        stat[6]                       // Email
-      );
-      globalleaderboard.addPerson(newPerson);
       for ( int b = 0; b < stat.length; b ++ ) {
         pw.println(stat[b]);
         stat[b] = "";
