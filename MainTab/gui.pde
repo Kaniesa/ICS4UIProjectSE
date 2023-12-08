@@ -21,7 +21,9 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:guiWi
 public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:388698:
   profilePageADD = true;
   schedulePage = false;
-  LeaderboardPage = false;
+  ppl = false;
+  arnold = false;
+  threeday = false;
   pause=true;
 } //_CODE_:addperson:388698:
 
@@ -32,11 +34,10 @@ public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPers
 public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692670:
   schedulePage = true;
   profilePageADD = false;
-  LeaderboardPage = false;
 } //_CODE_:schedule:692670:
 
 String selectedWorkoutSplit = "PushPullLeg";  // Default workout split
-String leaderboardmethod = "";
+String leaderboardmethod = "total";
 public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:ScheduleOrder:486547:
    if (event == GEvent.SELECTED) {
     // Get the selected workout split
@@ -86,7 +87,7 @@ public void createGUI() {
   addperson.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   addperson.addEventHandler(this, "addpersonMethod");
   EditPerson = new GDropList(guiWindow, 50, 95, 120, 100, 3, 10);
-  EditPerson.setItems(loadStrings("list_209485"), 0);
+  EditPerson.setItems(loadStrings("list_330604"), 0);
   EditPerson.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   EditPerson.addEventHandler(this, "editpersonMethod");
   schedule = new GButton(guiWindow, 50, 135, 120, 25);
@@ -94,7 +95,7 @@ public void createGUI() {
   schedule.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   schedule.addEventHandler(this, "scheduleMethod");
   ScheduleOrder = new GDropList(guiWindow, 50, 165, 120, 100, 3, 10);
-  ScheduleOrder.setItems(loadStrings("list_433561"), 0);
+  ScheduleOrder.setItems(loadStrings("list_486547"), 0);
   ScheduleOrder.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   ScheduleOrder.addEventHandler(this, "scheduleorderMethod");
   leaderboard = new GButton(guiWindow, 50, 205, 120, 25);
@@ -102,7 +103,7 @@ public void createGUI() {
   leaderboard.setLocalColorScheme(GCScheme.RED_SCHEME);
   leaderboard.addEventHandler(this, "leaderboardMethod");
   LeaderboardStat = new GDropList(guiWindow, 50, 235, 120, 100, 3, 10);
-  LeaderboardStat.setItems(loadStrings("list_867522"), 0);
+  LeaderboardStat.setItems(loadStrings("list_320203"), 0);
   LeaderboardStat.setLocalColorScheme(GCScheme.RED_SCHEME);
   LeaderboardStat.addEventHandler(this, "leaderboardStatMethod");
   powerliftPro = new GLabel(guiWindow, 50, 283, 120, 15);

@@ -37,49 +37,21 @@ class Leaderboard {
   y += spacing;  // Move down for the next line
   println();  // Add extra space at the end
 }
-  //public Person getPerson(String email) {
-  //  // Loop through existing persons in the leaderboard
-  //  for (Person existingPerson : persons) {
-  //    if (existingPerson.getEmail().equals(email)) {
-  //      return existingPerson;
-  //    }
-  //  }
+ 
+  void displayLeaderboard() {
+    bubbleSortTotalMaxLifts(persons);
 
-    // Return null if the person with the specified email is not found
-  //  return null;
-  //}
-
-void drawLeaderboard() {
-  bubbleSortTotalMaxLifts(persons);
-
-  // Display the leaderboard
-  textSize(20);
-  textAlign(LEFT);
-  fill(0);  // Set the text color to black
-
-  float x = 50;  // X-coordinate for the leaderboard entries
-  float y = 50;  // Initial Y-coordinate for the first entry
-  float spacing = 30;  // Adjust this variable for spacing between entries
-
-  text("********************************", x, y);
-  y += spacing;  // Move down for the next line
-
-  text("Leaderboard (Total Max Lifts):", x, y);
-  y += spacing;  // Move down for the next line
-
-  for (int i = 0; i < persons.size(); i++) {
-    Person person = persons.get(i);
-    String leaderboardEntry = (i + 1) + ". " + person.name + " - Total Max: " + person.getTotalMaxLifts() + " lb";
-    text(leaderboardEntry, x, y);
-    y += spacing;  // Move down for the next entry
+    // Display the leaderboard
+    println("********************************");
+    println("Leaderboard (Total Max Lifts):");
+    for (int i = 0; i < persons.size(); i++) {
+      Person person = persons.get(i);
+      println((i + 1) + ". " + person.name + " - Total Max: " + person.getTotalMaxLifts() + " lb");
+    }
+    println("********************************");
+    println();
   }
 
-  text("********************************", x, y);
-  y += spacing;  // Move down for the next line
-  println();  // Add extra space at the end
-}
-
-  // Bubble sort to order persons by their total max lifts in descending order 
   void changeRankingCriteria( String chosenLift) {
     bubbleSortLiftMax(persons, chosenLift);
 
@@ -113,7 +85,6 @@ void drawLeaderboard() {
       n--;  // Decrease n as the largest element is now at the end
     } while (swapped);  // Continue sorting until no more swaps are made
   }
-  
 
   // Bubble sort to order persons by their max lift in the chosen exercise in descending order
   void bubbleSortLiftMax(ArrayList<Person> persons, String chosenLift) {
