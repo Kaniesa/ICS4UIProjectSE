@@ -20,10 +20,11 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:guiWi
 
 public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:388698:
   profilePageADD = true;
+  resetNameStat = true;
   schedulePage = false;
   ppl = false;
   arnold = false;
-    LeaderboardPage = false;
+  LeaderboardPage = false;
 
   threeday = false;
   pause=true;
@@ -33,6 +34,7 @@ public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPers
   selectedProfile = EditPerson.getSelectedText();
   profilePageEDIT = false;
   profilePageEDIT = true;
+  resetNameStat = true;
   println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:EditPerson:330604:
 

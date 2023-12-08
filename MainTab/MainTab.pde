@@ -1,5 +1,5 @@
 import g4p_controls.*;
-boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage;
+boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage, resetNameStat;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
 int i, personCount;
@@ -40,15 +40,21 @@ void draw() {
     image(img, 860, 20, width/8, height/4);
   } 
   else if ( profilePageEDIT == true ){
-    if ( i == 0 ){
-      String[] allData = loadStrings( "data/" + selectedProfile + ".txt" );
-      for ( int j = 0; j < allData.length; j++ ){
-        stat[j] = allData[j];
-      }
+    if ( selectedProfile.equals("--") ){
+      profilePageEDIT = false;
+      background(255);
     }
-    background(255);
-    openProfile();
-    image(img, 860, 20, width/8, height/4);
+    else { 
+      if ( i == 0 ){
+        String[] allData = loadStrings( "data/" + selectedProfile + ".txt" );
+        for ( int j = 0; j < allData.length; j++ ){
+          stat[j] = allData[j];
+        }
+      }
+      background(255);
+      openProfile();
+      image(img, 860, 20, width/8, height/4);
+    }
   }
   
   else if (schedulePage == true) {
@@ -106,6 +112,15 @@ void openProfile() {
   fill(red, green, blue);
   textSize(30);
   stat[i] = typing;
+  if ( resetNameStat == true){
+    if ( profilePageEDIT == true ){
+      typing = selectedProfile;
+    }
+    else {
+      typing = "";
+    }
+    resetNameStat = false;
+  }
   text("Name: " + stat[0], 50, 50 );
   text("Age: " + stat[1], 50, 100 );
   text("Weight: " + stat[2], 50, 150 );
@@ -114,6 +129,9 @@ void openProfile() {
   text("Max Deadlift: " + stat[5], 50, 300 );
   text("Email: " + stat[6], 50, 350 );
   text("Click Enter to Move to Next Entry!", 50, 450);
+  textSize(15);
+  text("Note: Click on Window first to start typing!", 550, 450);
+  text("If you are editing a profile, you must check everything before exiting!", 50, 480);
 }
 
 
@@ -141,6 +159,8 @@ void keyPressed() {
       i = 0;
       profilePageEDIT = false;
       replaceOldFile(selectedProfile);
+      stat[0] = "";
+      background(255);
     }
     else {
       print("YAYYYY now i can commit identity theft...") ;
@@ -155,6 +175,8 @@ void keyPressed() {
       saveStrings("data/list_330604", personNames);
       profilePageADD = false;
       EditPerson.setItems(loadStrings("list_330604"), 0);
+      stat[0] = "";
+      background(255);
     }
   } 
   else if ( key == CODED ) {
