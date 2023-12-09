@@ -1,13 +1,17 @@
+// POWERLIFT PRO
+// Unlock your true fitness potential...
+// By Bilal Albezreh, Kaniesa Deswal, Matthew Singer
+
 import g4p_controls.*;
 
 //Global Variables
-boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage, resetNameStat;
+boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage, resetNameStat; //for switching between 'pages'
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
-String typing = "";
-int i, personCount;
-PrintWriter pw;
-String[] personNames = {"--"};
-String selectedProfile;
+String typing = ""; // variable to track what user types
+int i, personCount; // adding a person's profile variables
+PrintWriter pw;  // for saving profile information to files
+String[] personNames = {"--"};  //list of people
+String selectedProfile;  //name of person selected to edit
 float red = 165;//red color slider
 float green = 5;//green color slider
 float blue = 5;//blue color slider
