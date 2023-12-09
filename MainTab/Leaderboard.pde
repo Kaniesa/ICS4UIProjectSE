@@ -5,10 +5,10 @@ class Leaderboard {
     persons = new ArrayList<Person>();
   }
 
-  void addPerson(Person person) {
+  void addPerson(Person person) { // adds person to the arraylist
     persons.add(person);
   }
-  void SpecificExcerDraw(String a) {
+  void SpecificExcerDraw(String a) { // draw function for the leaderboard page
     bubbleSortLiftMax(persons, a);
 
     // Display the leaderboard
@@ -41,37 +41,7 @@ class Leaderboard {
     println();  // Add extra space at the end
   }
 
-  void displayLeaderboard() {
-    bubbleSortTotalMaxLifts(persons);
-    stroke(red, green, blue);
-
-
-    // Display the leaderboard
-    println("********************************");
-    println("Leaderboard (Total Max Lifts):");
-    for (int i = 0; i < persons.size(); i++) {
-      Person person = persons.get(i);
-      println((i + 1) + ". " + person.name + " - Total Max: " + person.getTotalMaxLifts() + " lb");
-    }
-    println("********************************");
-    println();
-  }
-
-  void changeRankingCriteria( String chosenLift) {
-    bubbleSortLiftMax(persons, chosenLift);
-    stroke(red, green, blue);
-
-
-    // Display the leaderboard based on the chosen lift
-    println("********************************");
-    println("Leaderboard (Based on " + chosenLift + " Max Lift):");
-    for (int i = 0; i < persons.size(); i++) {
-      Person person = persons.get(i);
-      println((i + 1) + ". " + person.name + " - " + chosenLift + " Max: " + person.getLiftMax(chosenLift) + " lb");
-    }
-    println("********************************");
-    println();
-  }
+ 
 
   // Bubble sort to order persons by their total max lifts in descending order
   void bubbleSortTotalMaxLifts(ArrayList<Person> persons) {

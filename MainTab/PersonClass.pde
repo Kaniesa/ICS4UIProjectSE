@@ -59,14 +59,4 @@ class Person {
     return benchPressMax + squatMax + deadliftMax;
   }
 
-  void displayOverview() { // prints an Overview of the Person
-    println("----------------------------------------");
-    println("Name: " + name);
-    println("Weight: " + weight + " lb");
-    println("Age: " + age + " years");
-    println("Bench Press Max: " + benchPressMax + " lb");
-    println("Squat Max: " + squatMax + " lb");
-    println("Deadlift Max: " + deadliftMax + " lb");
-    println("Email: " + email);
-  }
 }
