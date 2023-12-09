@@ -13,10 +13,10 @@ class Leaderboard {
 
   // Display the leaderboard
   textSize(20);
-  textAlign(LEFT);
+  textAlign(CENTER);
   fill(0);  // Set the text color to black
 
-  float x = 50;  // X-coordinate for the leaderboard entries
+  float x = 500;  // X-coordinate for the leaderboard entries
   float y = 50;  // Initial Y-coordinate for the first entry
   float spacing = 30;  // Adjust this variable for spacing between entries
 
