@@ -1,3 +1,4 @@
+//global variables
 int month = month();
 int day = day();
 int year = year();
@@ -6,6 +7,7 @@ String m = String.valueOf(month);
 String y = String.valueOf(year);
 boolean ppl, arnold, threeday;
 
+//Booleans for the ppl and arnold split windows
 boolean pause = false;
 boolean showPushWindow = false;
 boolean showArmsWindow = false;
@@ -14,18 +16,7 @@ boolean AshowPushWindow = false;
 boolean AshowArmsWindow = false;
 boolean AshowLegsWindow = false;
 
-//void setup() {
-//  size(1000, 500);
-//}
-
-//void draw() {
-//  background(255);
-//  drawSchedule();
-//  dateAndTime();
-//  drawScheduleText();
-//  drawWO();
-//}
-void dateAndTime() {
+void dateAndTime() { //Date and Time Function
   fill(red, green, blue);
   textSize(20);
   text(y, 900, 20);
@@ -35,7 +26,7 @@ void dateAndTime() {
   text(d, 978, 20);
 }
 
-void drawScheduleText() {
+void drawScheduleText() { //Schedule Maintext
   fill(red, green, blue);
   textSize(65);
   text("Schedule", 374, 75);
@@ -49,27 +40,24 @@ void drawScheduleText() {
   text("sun", 774, 185);
 }
 
-void drawWO() {
-  fill(red, green, blue);
-  textSize(25);
-
+void wos() {
   // Display workout schedule based on the selected split
-  switch (selectedWorkoutSplit) {
-  case "PushPullLeg":
+  switch (selectedWorkoutSplit) {//for the drop down menu
+  case "PushPullLeg": //Toggles based on dropdown
     drawPushPullLegSplit();
     ppl = true;
     arnold = false;
     threeday = false;
     break;
 
-  case "ArnoldSplit":
+  case "ArnoldSplit": //Toggles based on dropdown
     drawArnoldSplit();
     ppl = false;
     arnold = true;
     threeday = false;
     break;
 
-  case "3DaySplit":
+  case "3DaySplit": //Toggles based on dropdown
     draw3DaySplit();
     ppl = false;
     arnold = false;
@@ -82,7 +70,7 @@ void drawWO() {
   }
 }
 
-void drawPushPullLegSplit() {
+void drawPushPullLegSplit() {  //Fills in Calandar for PPL Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -109,7 +97,7 @@ void drawPushPullLegSplit() {
 }
 
 
-void drawArnoldSplit() {
+void drawArnoldSplit() { //Fills in Calandar for Arnold Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -135,7 +123,7 @@ void drawArnoldSplit() {
   text("Rest", 777, 415);
 }
 
-void draw3DaySplit() {
+void draw3DaySplit() { //Fills in Calandar for 3 day Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -161,7 +149,7 @@ void draw3DaySplit() {
   text("Rest", 777, 415);
 }
 
-void displayPushPullLegDays() {
+void displayPushPullLegDays() { //Displays PPL Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -188,7 +176,7 @@ void displayPushPullLegDays() {
 }
 
 
-void displayArnoldDays() {
+void displayArnoldDays() { //Displays arnold Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -214,7 +202,7 @@ void displayArnoldDays() {
   text("Rest", 777, 415);
 }
 
-void display3DaySplitDays() {
+void display3DaySplitDays() { //Displays 3 day Split
   fill(0);
   textSize(25);
   text("Push", 175, 245);
@@ -240,7 +228,7 @@ void display3DaySplitDays() {
   text("Rest", 777, 415);
 }
 
-void drawSchedule() {
+void drawSchedule() { //Draws schedule lines
   fill(255);
   rect(150, 150, 700, 300);
   line(150, 200, 850, 200);
@@ -255,20 +243,20 @@ void drawSchedule() {
   }
 }
 
-void mousePressed() {
+void mousePressed() { //Mouse click functions based off the clicking handlers tab
   if (pause) {
     loop();
   } else {
     noLoop();
   }
 
-  if (schedulePage) {
-    if (ppl) {
+  if (schedulePage) { //if its the schedule page
+    if (ppl) { //ppl dropdown selected
       PushclickHandler();
-    } else if (arnold) {
+    } else if (arnold) {//arnold dropdown selected
       ArnoldclickHandler();
-    } else if (threeday) {
-    ThreedayclickHandler();
+    } else if (threeday) {//3 day dropdown selected
+      ThreedayclickHandler();
     }
     buttonClickHandler();
   }
@@ -279,9 +267,9 @@ void mousePressed() {
 //}
 
 
-void PushdrawWindow() {
+void PushdrawWindow() { //Push day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -299,9 +287,9 @@ void PushdrawWindow() {
   text("Abs: 10 Mins of Misc. ab work", 380, 310);
 }
 
-void ArmsdrawWindow() {
+void ArmsdrawWindow() { //pull day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -319,9 +307,9 @@ void ArmsdrawWindow() {
   text("Forearm Curls", 440, 310);
 }
 
-void LegsdrawWindow() {
+void LegsdrawWindow() { //leg day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -339,27 +327,9 @@ void LegsdrawWindow() {
   text("Calf Raises", 456, 310);
 }
 
-//Changing the schedule Based on the DROP DOWN MENU
-void displayWorkoutSplitMessage(String workoutSplit) {
-  // Display messages based on the selected workout split
-  switch (workoutSplit) {
-  case "PushPullLeg":
-    println("You selected: Push Pull Leg Split");
-    break;
-  case "ArnoldSplit":
-    println("You selected: Arnold Split");
-    break;
-  case "3DaySplit":
-    println("You selected: 3-Day Workout Split");
-    break;
-  default:
-    println("Invalid selection");
-  }
-}
-
-void APushdrawWindow() {
+void APushdrawWindow() { //arnold push day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -377,9 +347,9 @@ void APushdrawWindow() {
   text("Dips: 3x10-12", 447, 310);
 }
 
-void AArmsdrawWindow() {
+void AArmsdrawWindow() { //arnold arm day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -397,9 +367,9 @@ void AArmsdrawWindow() {
   text("Bicep 21s: 3 sets", 434, 310);
 }
 
-void ALegsdrawWindow() {
+void ALegsdrawWindow() { //arnold leg day window
   fill(255);
-  stroke(red,green, blue);
+  stroke(red, green, blue);
   rect(350, 75, 300, 325);
   // Exit button
   fill(255, 0, 0);
@@ -417,13 +387,8 @@ void ALegsdrawWindow() {
   text("Calf Raises: 3x8-16", 426, 310);
 }
 
-void welcome() {
+void welcome() { //Welcome graphic
   fill(red, green, blue);
   textSize(105);
-
-  // Set the specific font for the "Welcome To" line
-
   text("Welcome To", 232, 85);
-
-  // Reset the font to the default for the rest of the text
 }

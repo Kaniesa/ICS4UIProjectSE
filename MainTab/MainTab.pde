@@ -1,4 +1,6 @@
 import g4p_controls.*;
+
+//Global Variables
 boolean profilePageADD, profilePageEDIT, schedulePage, LeaderboardPage, benchpressPage, squatPage, deadliftPage, resetNameStat;
 String[] stat = new String[7]; //name, age, weight, mbp, ms, md, email, extra
 String typing = "";
@@ -6,48 +8,46 @@ int i, personCount;
 PrintWriter pw;
 String[] personNames = {"--"};
 String selectedProfile;
-float red = 165;
-float green = 5;
-float blue = 5;
-PImage img;
+float red = 165;//red color slider
+float green = 5;//green color slider
+float blue = 5;//blue color slider
+PImage img; //POWERLIFT PRO IMAGE
 Leaderboard globalleaderboard;
 
-void setup() {
-  globalleaderboard = new Leaderboard(); 
+void setup() { //setup
+  globalleaderboard = new Leaderboard();
   String[] resetProfiles = loadStrings("list_330604");
-  for ( int r = 0; r < resetProfiles.length; r ++ ){
+  for ( int r = 0; r < resetProfiles.length; r ++ ) {
     resetProfiles[r] = "";
   }
   resetProfiles[0] = "--";
   saveStrings("data/list_330604", resetProfiles);
-  
+
   createGUI();
   size(1000, 500);
   for ( int a = 0; a < stat.length; a ++ ) {
     stat[a] = "";
   }
-  img = loadImage("logo.png");
+  img = loadImage("logo.png"); //loads the image onto the sketch
 }
 
 void draw() {
-
+  //Draws the welcome text and Giant Powerlift Pro Logo
   welcome();
   image(img, 250, 20);
-  
+
   if ( profilePageADD == true ) {
     background(255);
     openProfile();
     image(img, 860, 20, width/8, height/4);
-  } 
-  else if ( profilePageEDIT == true ){
-    if ( selectedProfile.equals("--") ){
+  } else if ( profilePageEDIT == true ) {
+    if ( selectedProfile.equals("--") ) {
       profilePageEDIT = false;
       background(255);
-    }
-    else { 
-      if ( i == 0 ){
+    } else {
+      if ( i == 0 ) {
         String[] allData = loadStrings( "data/" + selectedProfile + ".txt" );
-        for ( int j = 0; j < allData.length; j++ ){
+        for ( int j = 0; j < allData.length; j++ ) {
           stat[j] = allData[j];
         }
       }
@@ -55,18 +55,16 @@ void draw() {
       openProfile();
       image(img, 860, 20, width/8, height/4);
     }
-  }
-  
-  else if (schedulePage == true) {
+  } else if (schedulePage == true) { //if the schedule page was clicked in the GUI...
     background(255);
-    stroke(red, green, blue);
-    drawSchedule();
+    stroke(red, green, blue); //Theme
+    drawSchedule(); //drawing the schedule, date, and schedule TEXT
     dateAndTime();
     drawScheduleText();
-    drawWO();
-    image(img, 860, 20, width/8, height/4);
+    wos(); //Drop down registration
+    image(img, 860, 20, width/8, height/4); //Logo in the top right
 
-
+     //Draws windows based on which splits are displayed and which windows are currenttly clicked open
     if (showPushWindow && ppl) {
       PushdrawWindow();
     } else if (showArmsWindow && ppl) {
@@ -86,27 +84,23 @@ void draw() {
     } else if (showLegsWindow && threeday) {
       LegsdrawWindow();
     }
-  } 
-  else if ( LeaderboardPage == true) {
+  } else if ( LeaderboardPage == true) {
     if (leaderboardsortmethod == "total") { // the person selects the drop down in GUI (bench)
       background(255);
       image(img, 860, 20, width/8, height/4);
       globalleaderboard.SpecificExcerDraw("all");
-    } 
-    else if (leaderboardsortmethod == "benchpress") { // the person selects the drop down in GUI (bench)
+    } else if (leaderboardsortmethod == "benchpress") { // the person selects the drop down in GUI (bench)
       background(255);
       image(img, 860, 20, width/8, height/4);
-      globalleaderboard.SpecificExcerDraw("benchPress"); 
-   }
-   else if ( leaderboardsortmethod == "squat" ){
-     background (255);
-     image(img, 860, 20, width/8, height/4);
-     globalleaderboard.SpecificExcerDraw("squat"); 
-   }
-    else if ( leaderboardsortmethod == "deadlift" ) {
+      globalleaderboard.SpecificExcerDraw("benchPress");
+    } else if ( leaderboardsortmethod == "squat" ) {
       background (255);
       image(img, 860, 20, width/8, height/4);
-      globalleaderboard.SpecificExcerDraw("deadlift"); 
+      globalleaderboard.SpecificExcerDraw("squat");
+    } else if ( leaderboardsortmethod == "deadlift" ) {
+      background (255);
+      image(img, 860, 20, width/8, height/4);
+      globalleaderboard.SpecificExcerDraw("deadlift");
     }
   }
 }
@@ -116,11 +110,10 @@ void openProfile() {
   fill(red, green, blue);
   textSize(30);
   stat[i] = typing;
-  if ( resetNameStat == true){
-    if ( profilePageEDIT == true ){
+  if ( resetNameStat == true) {
+    if ( profilePageEDIT == true ) {
       typing = selectedProfile;
-    }
-    else {
+    } else {
       typing = "";
     }
     resetNameStat = false;
@@ -149,35 +142,32 @@ void keyPressed() {
   }
   //Profile: Go to next entry when enter clicked
   else if ( key == ENTER ) {
-    if ( i == 0 && profilePageEDIT == false ){
-      pw = createWriter("data/" + stat[0] + ".txt"); 
+    if ( i == 0 && profilePageEDIT == false ) {
+      pw = createWriter("data/" + stat[0] + ".txt");
       i += 1;
       typing = "";
-    }
-    else if ( i != stat.length -1 ) {
+    } else if ( i != stat.length -1 ) {
       i += 1;
       typing = "";
-    } 
-    else if ( profilePageEDIT == true ){
+    } else if ( profilePageEDIT == true ) {
       saveStrings("data/" + selectedProfile, stat);
       i = 0;
       profilePageEDIT = false;
       replaceOldFile(selectedProfile);
       stat[0] = "";
       background(255);
-    }
-    else {
+    } else {
       print("YAYYYY now i can commit identity theft...") ;
       personNames = append(personNames, stat[0]);
-       Person newPerson = new Person(
-        stat[0],                      // Name
-        Integer.parseInt(stat[1]),    // Age
-        Float.parseFloat(stat[2]),    // Weight
-        Float.parseFloat(stat[3]),    // Max Benchpress
-        Float.parseFloat(stat[4]),    // Max Squat
-        Float.parseFloat(stat[5]),    // Max Deadlift
+      Person newPerson = new Person(
+        stat[0], // Name
+        Integer.parseInt(stat[1]), // Age
+        Float.parseFloat(stat[2]), // Weight
+        Float.parseFloat(stat[3]), // Max Benchpress
+        Float.parseFloat(stat[4]), // Max Squat
+        Float.parseFloat(stat[5]), // Max Deadlift
         stat[6]                       // Email
-      );
+        );
 
       // Add the person to the leaderboard
       globalleaderboard.addPerson(newPerson);
@@ -195,17 +185,15 @@ void keyPressed() {
       stat[0] = "";
       background(255);
     }
-  } 
-  else if ( key == CODED ) {
+  } else if ( key == CODED ) {
     if ( key == SHIFT ) {
     }
-  } 
-  else
+  } else
     typing = typing + key;
 }
 
-void replaceOldFile(String fileName){
-  pw = createWriter("data/" + fileName + ".txt"); 
+void replaceOldFile(String fileName) {
+  pw = createWriter("data/" + fileName + ".txt");
   for ( int b = 0; b < stat.length; b ++ ) {
     pw.println(stat[b]);
     stat[b] = "";

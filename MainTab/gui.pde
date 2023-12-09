@@ -42,20 +42,17 @@ public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692
   schedulePage = true;
   profilePageADD = false;
   LeaderboardPage = false;
-
 } //_CODE_:schedule:692670:
 
 String selectedWorkoutSplit = "PushPullLeg";  // Default workout split
 String leaderboardsortmethod = "total";
 public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:ScheduleOrder:486547:
-   if (event == GEvent.SELECTED) {
+  if (event == GEvent.SELECTED) {
     // Get the selected workout split
     int index = source.getSelectedIndex();
     String[] splits = {"PushPullLeg", "ArnoldSplit", "3DaySplit"};
     selectedWorkoutSplit = splits[index];
 
-    // Display the corresponding message
-    displayWorkoutSplitMessage(selectedWorkoutSplit);
   }
 } //_CODE_:ScheduleOrder:486547:
 
@@ -65,13 +62,12 @@ public void leaderboardMethod(GButton source, GEvent event) { //_CODE_:leaderboa
   LeaderboardPage = true;
 }
 public void leaderboardStatMethod(GDropList source, GEvent event) { //_CODE_:LeaderboardStat:320203:
-if (event == GEvent.SELECTED) {
-int index = source.getSelectedIndex();
-    String[] excercise = {"total","benchpress", "squat", "deadlift"};
+  if (event == GEvent.SELECTED) {
+    int index = source.getSelectedIndex();
+    String[] excercise = {"total", "benchpress", "squat", "deadlift"};
     leaderboardsortmethod = excercise[index];
   }
-  
-  } //_CODE_:LeaderboardStat:320203:
+} //_CODE_:LeaderboardStat:320203:
 
 
 
@@ -140,7 +136,7 @@ public void createGUI() {
   powerliftPro.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   powerliftPro.setOpaque(false);
   guiWindow.loop();
-    G4P.messagesEnabled(false);
+  G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
@@ -184,7 +180,7 @@ GButton leaderboard;
 GDropList LeaderboardStat;
 GLabel powerliftPro;
 GWindow window2;
-GSlider redd; 
-GSlider greenn; 
-GSlider bluee; 
-GLabel label1; 
+GSlider redd;
+GSlider greenn;
+GSlider bluee;
+GLabel label1;
