@@ -1,7 +1,7 @@
 bilal
-10
+12
+100
 200
-200
-270
 300
-bilalbilal
+400
+sfsd

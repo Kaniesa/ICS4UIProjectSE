@@ -88,22 +88,22 @@ void draw() {
     }
   } 
   else if ( LeaderboardPage == true) {
-    if (leaderboardmethod == "total") { // the person selects the drop down in GUI (bench)
+    if (leaderboardsortmethod == "total") { // the person selects the drop down in GUI (bench)
       background(255);
       image(img, 860, 20, width/8, height/4);
       globalleaderboard.SpecificExcerDraw("all");
     } 
-    else if (leaderboardmethod == "benchpress") { // the person selects the drop down in GUI (bench)
+    else if (leaderboardsortmethod == "benchpress") { // the person selects the drop down in GUI (bench)
       background(255);
       image(img, 860, 20, width/8, height/4);
       globalleaderboard.SpecificExcerDraw("benchPress"); 
    }
-   else if ( leaderboardmethod == "squat" ){
+   else if ( leaderboardsortmethod == "squat" ){
      background (255);
      image(img, 860, 20, width/8, height/4);
      globalleaderboard.SpecificExcerDraw("squat"); 
    }
-    else if ( leaderboardmethod == "deadlift" ) {
+    else if ( leaderboardsortmethod == "deadlift" ) {
       background (255);
       image(img, 860, 20, width/8, height/4);
       globalleaderboard.SpecificExcerDraw("deadlift"); 

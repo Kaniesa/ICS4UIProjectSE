@@ -46,7 +46,7 @@ public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692
 } //_CODE_:schedule:692670:
 
 String selectedWorkoutSplit = "PushPullLeg";  // Default workout split
-String leaderboardmethod = "total";
+String leaderboardsortmethod = "total";
 public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:ScheduleOrder:486547:
    if (event == GEvent.SELECTED) {
     // Get the selected workout split
@@ -67,8 +67,8 @@ public void leaderboardMethod(GButton source, GEvent event) { //_CODE_:leaderboa
 public void leaderboardStatMethod(GDropList source, GEvent event) { //_CODE_:LeaderboardStat:320203:
 if (event == GEvent.SELECTED) {
 int index = source.getSelectedIndex();
-    String[] excercise = {"all","benchpress", "squat", "deadlift"};
-    leaderboardmethod = excercise[index];
+    String[] excercise = {"total","benchpress", "squat", "deadlift"};
+    leaderboardsortmethod = excercise[index];
   }
   
   } //_CODE_:LeaderboardStat:320203:
