@@ -158,6 +158,7 @@ void openProfile() {
   textSize(15);
   text("Note: Click on Window first to start typing!", 550, 450);
   text("If you are editing a profile, you must check everything before exiting!", 50, 480);
+  text("You must enter integer values for all entries except name and email entries.", 50, 400);
 }
 
 

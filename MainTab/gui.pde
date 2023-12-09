@@ -18,7 +18,9 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:guiWi
   appc.background(230);
 } //_CODE_:guiWindow:558243:
 
+//ADD PERSON BUTTON
 public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:388698:
+  //Open profile page, and close all others (using booleans)
   profilePageADD = true;
   resetNameStat = true;
   schedulePage = false;
@@ -30,15 +32,18 @@ public void addpersonMethod(GButton source, GEvent event) { //_CODE_:addperson:3
   pause=true;
 } //_CODE_:addperson:388698:
 
+//EDIT PERSON DROPDOWN
 public void editpersonMethod(GDropList source, GEvent event) { //_CODE_:EditPerson:330604:
+  //Open profile page, and close all others (using booleans)
   selectedProfile = EditPerson.getSelectedText();
   profilePageEDIT = false;
   profilePageEDIT = true;
   resetNameStat = true;
-  println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:EditPerson:330604:
 
+//SCHEDULE BUTTON
 public void scheduleMethod(GButton source, GEvent event) { //_CODE_:schedule:692670:
+  //Open schedule page, and close all others (using booleans)
   schedulePage = true;
   profilePageADD = false;
   LeaderboardPage = false;
@@ -56,11 +61,15 @@ public void scheduleorderMethod(GDropList source, GEvent event) { //_CODE_:Sched
   }
 } //_CODE_:ScheduleOrder:486547:
 
+//LEADERBOARD BUTTON
 public void leaderboardMethod(GButton source, GEvent event) { //_CODE_:leaderboard:787741:
+  //Open leaderboard page, and close all others (using booleans)
   profilePageADD = false;
   schedulePage = false;
   LeaderboardPage = true;
 }
+
+//LEADERBOARD DROPDOWN
 public void leaderboardStatMethod(GDropList source, GEvent event) { //_CODE_:LeaderboardStat:320203:
   if (event == GEvent.SELECTED) {
     int index = source.getSelectedIndex();
@@ -70,7 +79,7 @@ public void leaderboardStatMethod(GDropList source, GEvent event) { //_CODE_:Lea
 } //_CODE_:LeaderboardStat:320203:
 
 
-
+//COLOUR THEME SLIDE GUI
 synchronized public void win_draw2(PApplet appc, GWinData data) { //_CODE_:window2:862588:
   appc.background(230);
 } //_CODE_:window2:862588:
